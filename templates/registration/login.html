@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <script type="text/javascript" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Login</title>
+</head>
+<body>
+<div id="container">
+    <from class="p-3 mt-3" method="post">
+        {% csrf_token %}
+        <div id="formcontainer">
+            <img id="img1" src="https://images.pexels.com/photos/414645/pexels-photo-414645.jpeg?cs=srgb&dl=background-beverage-brown-414645.jpg&fm=jpg">
+            <a href="#"><img id="cross" src="https://image.flaticon.com/icons/svg/148/148766.svg"></a>
+            <p id="text">Login to your Account</p>
+            <input id="email" type="email" type="tel" placeholder="Email / Phone">
+            <input id="password" type="password" placeholder="Password">
+            <input id="check" type="checkbox">
+            <p id="text1">Remember Me</p>
+            <a id="forget" href="#">Forget Password ?</a>
+            {{ from.error }}
+            <button id="login" type="submit">Login</button>
+            <hr id="hrline1">
+            <p id="text2">or login with</p>
+            <hr id="hrline2">
+            <button id="facebook"><img id="facebook1" src="https://image.flaticon.com/icons/svg/174/174848.svg">Facebook</button>
+            <button id="google"><img id="google1" src="https://image.flaticon.com/icons/svg/281/281764.svg">Google</button>
+            <p id="text3">Not a Member?</p>
+            <a id="signup" href="#">Signup Now</a>
+        </div>
+    </from>
+</div>
+</body>
+</html>
