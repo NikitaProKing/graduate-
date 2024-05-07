@@ -5,35 +5,30 @@
     <meta charset="UTF-8">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css">
+
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <script rel="stylesheet" href="{% static 'js/login.js' %}"></script>
     <script type="text/javascript" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script rel="stylesheet" href="{% static 'js/login.js' %}"></script>
     <title>Login</title>
 </head>
 <body>
-<div id="container">
-    <from class="p-3 mt-3" method="post">
-        {% csrf_token %}
-        <div id="formcontainer">
-            <img id="img1" src="https://images.pexels.com/photos/414645/pexels-photo-414645.jpeg?cs=srgb&dl=background-beverage-brown-414645.jpg&fm=jpg">
-            <a href="#"><img id="cross" src="https://image.flaticon.com/icons/svg/148/148766.svg"></a>
-            <p id="text">Login to your Account</p>
-            <input id="email" type="email" type="tel" placeholder="Email / Phone">
-            <input id="password" type="password" placeholder="Password">
-            <input id="check" type="checkbox">
-            <p id="text1">Remember Me</p>
-            <a id="forget" href="#">Forget Password ?</a>
-            {{ from.error }}
-            <button id="login" type="submit">Login</button>
-            <hr id="hrline1">
-            <p id="text2">or login with</p>
-            <hr id="hrline2">
-            <button id="facebook"><img id="facebook1" src="https://image.flaticon.com/icons/svg/174/174848.svg">Facebook</button>
-            <button id="google"><img id="google1" src="https://image.flaticon.com/icons/svg/281/281764.svg">Google</button>
-            <p id="text3">Not a Member?</p>
-            <a id="signup" href="#">Signup Now</a>
+<div class="limit">
+    <div class="login-container">
+        <div class="bb-login">
+            <form class="bb-form validate-form"> <span class="bb-form-title p-b-26"> Welcome </span> <span class="bb-form-title p-b-48"> <i class="mdi mdi-symfony"></i> </span>
+                <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c"> <input class="input100" type="text" name="email"> <span class="bbb-input" data-placeholder="Email"></span> </div>
+                <div class="wrap-input100 validate-input" data-validate="Enter password"> <span class="btn-show-pass"> <i class="mdi mdi-eye show_password"></i> </span> <input class="input100" type="password" name="pass"> <span class="bbb-input" data-placeholder="Password"></span> </div>
+                <div class="login-container-form-btn">
+                    <div class="bb-login-form-btn">
+                        <div class="bb-form-bgbtn"></div> <button class="bb-form-btn"> Login </button>
+                    </div>
+                </div>
+                <div class="text-center p-t-115"> <span class="txt1"> Don&rsquo;t have an account? </span> <a class="txt2" href="reg.html"> Sign Up </a> </div>
+            </form>
         </div>
-    </from>
+    </div>
 </div>
-</body>
 </html>
