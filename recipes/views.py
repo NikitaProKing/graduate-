@@ -1,10 +1,11 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.core.checks import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login
 
 from .forms import LoginForm, RegForm
+from .models import Profile
 
 
 @login_required
@@ -33,8 +34,11 @@ def reg_view(request):
     if request.method == 'POST':
         form = RegForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            Profile.objects.create(user=user)
+            login(request, user)
             return redirect('login')
     else:
         form = RegForm()
     return render(request, 'registration/reg.html', {'form': form})
+
