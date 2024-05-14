@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login
 
 from .forms import LoginForm, RegForm
-from .models import Profile
+from .models import Profile, VisitedPage
 
 
 @login_required
@@ -42,3 +42,16 @@ def reg_view(request):
         form = RegForm()
     return render(request, 'registration/reg.html', {'form': form})
 
+def logout(request):
+    if request.user.is_authenticated:
+        visited_pages = []
+        visited_cookies = request.COOKIES.get('visit_count')
+        if visited_cookies:
+            visited_pages = visited_cookies.split(',')
+            for page in visited_pages:
+                VisitedPage.objects.create(user=request.user, page_name=page)
+            response = redirect('create_form')
+            response.delete_cookie('visit_count')
+            return response
+    else:
+        return redirect('create_form')

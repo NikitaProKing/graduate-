@@ -1,6 +1,10 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import ModelForm
+from .models import Good
+
+
 
 class LoginForm(forms.Form):
     useremail = forms.EmailField()
@@ -14,7 +18,8 @@ class RegForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-class ProfileForm(forms.Form):
+class SampleModelForm(ModelForm):
     class Meta:
-        profile = User
+        model = Good
+        fields='__all__'
 
