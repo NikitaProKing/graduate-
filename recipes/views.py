@@ -10,21 +10,21 @@ from .models import Profile, VisitedPage
 
 @login_required
 def profile_view(request):
-    return render(request, 'templates/profile.html')
+    return render(request, 'profile.html')
 
 
 def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['useremail']
+            username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 auth_login(request, user)
-                return redirect('/')
+                return redirect('profile')
             else:
-                messages.error(request, 'Неверное имя пользователя или пароль. Пожалуйста, попробуйте снова.')
+                return render(request, 'registration/login.html', {'form': form, 'error': 'Неверный адрес электронной почты или пароль'})
     else:
         form = LoginForm()
     return render(request, 'registration/login.html', {'form': form})

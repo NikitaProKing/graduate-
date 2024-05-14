@@ -7,8 +7,22 @@ from .models import Good
 
 
 class LoginForm(forms.Form):
-    useremail = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'input100',
+                'placeholder': 'Email'
+            }
+        )
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'input100',
+                'placeholder': 'Password'
+            }
+        )
+    )
 
 class RegForm(UserCreationForm):
     email = forms.EmailField()

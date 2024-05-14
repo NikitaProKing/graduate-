@@ -7,6 +7,7 @@ from django.forms import forms
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     email = models.EmailField()
+    password = models.CharField(max_length=16)
 
 class News(models.Model):
     def clean_name(self):
