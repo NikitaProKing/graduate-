@@ -1,8 +1,11 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.checks import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 
 from .forms import LoginForm, RegForm
 from .models import Profile, VisitedPage
@@ -30,17 +33,17 @@ def login_view(request):
     return render(request, 'registration/login.html', {'form': form})
 
 
-def reg_view(request):
-    if request.method == 'POST':
-        form = RegForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            Profile.objects.create(user=user)
-            login(request, user)
-            return redirect('login')
-    else:
-        form = RegForm()
-    return render(request, 'registration/reg.html', {'form': form})
+class Reg_View(CreateView):
+    model = User
+    template_name = 'registration/reg.html'
+    form_class = RegForm
+    success_url = reverse_lazy('login')
+    context_object_name = 'form'
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
 
 def logout(request):
     if request.user.is_authenticated:
