@@ -21,11 +21,6 @@ class News(models.Model):
     date = models.DateTimeField('Publication date:', validators=[clean_name])
     slug = models.SlugField(null=False, unique=True)
 
-class Good(models.Model):
-    name = models.CharField('Имя', max_length=20, validators=[MaxLengthValidator(10)])
-    anons = models.CharField('фамилия', max_length=250)
-    date = models.DateTimeField('Дата публикации')
-    slug = models.SlugField(unique=True, max_length=100, blank=True, null=False)
 
 class VisitedPage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -34,3 +29,8 @@ class VisitedPage(models.Model):
 
     def __str__(self):
         return f"{self.user} visited {self.page_name} at {self.timestamp}"
+
+
+class Home_Model(models.Model):
+    my_file = models.FileField(upload_to='files/')
+    my_image = models.ImageField(upload_to='images/')

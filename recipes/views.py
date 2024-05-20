@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.checks import messages
@@ -6,9 +6,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-
+from django.core.paginator import Paginator
 from .forms import LoginForm, RegForm
-from .models import Profile, VisitedPage
+from .models import Profile, VisitedPage, Home_Model
 
 
 @login_required
@@ -45,16 +45,13 @@ class Reg_View(CreateView):
         return super().form_valid(form)
 
 
-def logout(request):
-    if request.user.is_authenticated:
-        visited_pages = []
-        visited_cookies = request.COOKIES.get('visit_count')
-        if visited_cookies:
-            visited_pages = visited_cookies.split(',')
-            for page in visited_pages:
-                VisitedPage.objects.create(user=request.user, page_name=page)
-            response = redirect('create_form')
-            response.delete_cookie('visit_count')
-            return response
-    else:
-        return redirect('create_form')
+def logout_view(request):
+    logout(request)
+    return redirect('/')
+
+def home_view(request):
+    my_queryset = Home_Model.objects.all()
+    paginator = Paginator(my_queryset, 25)
+    page = request.GET.get('page')
+    my_objects = paginator.get_page(page)
+    return render(request, 'home.html', {'my_objects': my_objects})
