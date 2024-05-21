@@ -8,59 +8,45 @@
     <link rel="stylesheet" href="{% static 'css/reg.css' %}">
     <title>Register</title>
 </head>
-<body>
+<body style="background-color: #ffffff">
 
 
-<div class="wrapper">
-    <div class="form-left">
-        <h2 class="text-uppercase">information</h2>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Et molestie ac feugiat sed. Diam volutpat commodo.
-        </p>
-        <p class="text">
-            <span>Sub Head:</span>
-            Vitae auctor eu augudsf ut. Malesuada nunc vel risus commodo viverra. Praesent elementum facilisis leo vel.
-        </p>
-        <div class="form-field">
-            <input type="submit" class="account" value="Have an Account?">
-        </div>
-    </div>
+<div class="wrapper" style="background-color: #F57C00">
     <form class="form-right" method="POST">
     {% csrf_token %}
-    <h2 class="text-uppercase">Registration form</h2>
+    <h2 class="text-uppercase" style="color: #f24b2e">Registration form</h2>
     <div class="row">
         <div class="col-sm-6 mb-3">
-            <label>Username</label>
+            <label style="color: #0a0a0a">Username</label>
             <input type="text" name="username" id="username" class="input-field" required>
         </div>
         <div class="col-sm-6 mb-3">
-            <label>Last Name</label>
+            <label style="color: #0a0a0a">Last Name</label>
             <input type="text" name="last_name" id="last_name" class="input-field" required>
         </div>
     </div>
     <div class="mb-3">
-        <label>Your Email</label>
+        <label style="color: #0a0a0a">Your Email</label>
         <input type="email" class="input-field" name="email" required>
     </div>
     <div class="row">
         <div class="col-sm-6 mb-3">
-            <label>Password</label>
+            <label style="color: #0a0a0a">Password</label>
             <input type="password" name="password1" id="password1" class="input-field" required>
         </div>
         <div class="col-sm-6 mb-3">
-            <label>Repeat Password</label>
+            <label style="color: #0a0a0a">Repeat Password</label>
             <input type="password" name="password2" id="password2" class="input-field" required>
         </div>
     </div>
     <div class="mb-3">
-        <label class="option">I agree to the <a href="#">Terms and Conditions</a>
+        <label class="option" style="color: #0a0a0a">I agree to the <a href="#" style="color: #f24b2e">Terms and Conditions</a>
             <input type="checkbox" checked>
             <span class="checkmark"></span>
         </label>
     </div>
-    <div class="form-field">
-        <input type="submit" value="Register" class="register" name="register">
+    <div class="form-field" >
+        <input type="submit" value="Register" class="register" name="register" style="background-color: #f24b2e">
     </div>
 </form>
 

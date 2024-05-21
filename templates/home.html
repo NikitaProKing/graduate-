@@ -3,42 +3,160 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/home_footer.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Home</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"><img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngegg.com%2Fru%2Fpng-kcumd&psig=AOvVaw3wZ8QUiYUulYKSHtHat6oj&ust=1716293764903000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCMCK4NaanIYDFQAAAAAdAAAAABAE"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown link
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-      </ul>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="https://kartinki.pics/uploads/posts/2022-02/thumbs/1645062712_32-kartinkin-net-p-kartinki-dlya-profilya-34.jpg"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown link
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+  <div class="container-fluid mx-auto">
+      <div class="row justify-content-center mt-4 row-1">
+          <div class="col-md-10">
+              <div class="row mt-2">
+                  <div class="col-md-6">
+                      <h1 class="heading">Newsletter Signup</h1>
+                      <p>Get Best Deals On The Internet Delivered Right In Your Inbox</p>
+                  </div>
+                  <div class="col-md-6">
+                      <form class="form-card row mt-5">
+                          <div class="form-group">
+                              <input type="email" name="email" placeholder="Enter Your Email ID">
+                          </div>
+                          <div class="form-group">
+                              <input class="btn btn-orange" type="submit" name="submit" value="Subscribe Now">
+                          </div>
+                      </form>
+                  </div>
+              </div>
+              <div class="terms d-flex pb-3">
+                  <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</small>
+              </div>
+          </div>
+          <div class="col-md-2">
+              <img class="img-1" src="https://i.imgur.com/jBlQcMI.png">
+          </div>
+      </div>
+      <div class="row d-flex justify-content-between row-2">
+          <div class="block-item">
+              <div class="fa fa-envelope"></div>
+              <div class="sub-head">Newsletter</div>
+              <p class="desc">5,00,000 People have already subscribed special newsletter</p>
+          </div>
+          <div class="block-item">
+              <div class="fa fa-eye"></div>
+              <div class="sub-head">Page Views</div>
+              <p class="desc">1 Billion Page views we receive every year</p>
+          </div>
+          <div class="block-item">
+              <div class="fa fa-fire"></div>
+              <div class="sub-head">Ranking</div>
+              <p class="desc">Top 200+ We are among top 200 sites in India</p>
+          </div>
+          <div class="block-item">
+              <div class="fa fa-home"></div>
+              <div class="sub-head">Merchants</div>
+              <p class="desc">Top 200 Merchants who are promoting their products</p>
+          </div>
+          <div class="block-item">
+              <div class="fa fa-facebook"></div>
+              <div class="sub-head">Fan's on Facebook</div>
+              <p class="desc">2,00,000+ fans on Facebook</p>
+          </div>
+      </div>
+      <div class="row d-flex pb-4 px-4">
+          <div class="col-md-8">
+              <div class="row d-flex justify-content-between">
+                  <div class="d-flex flex-column block-footer">
+                      <h5 class="footer-headings">About</h5>
+                      <p class="list-items">About Us</p>
+                      <p class="list-items">Advertising Opportunities</p>
+                      <p class="list-items">Contact Us</p>
+                      <p class="list-items">Work With Us</p>
+                      <p class="list-items">Blog</p>
+                  </div>
+                  <div class="d-flex flex-column block-footer">
+                      <h5 class="footer-headings">Festival Deals</h5>
+                      <p class="list-items">Diwali Offers</p>
+                      <p class="list-items">New Year Offers</p>
+                      <p class="list-items">Holi Offers</p>
+                      <p class="list-items">Rakhi Offers</p>
+                      <p class="list-items">Valentine's Day Offers</p>
+                  </div>
+                  <div class="d-flex flex-column block-footer">
+                      <h5 class="footer-headings">Top Stories</h5>
+                      <p class="list-items">Jabong Coupons</p>
+                      <p class="list-items">TataCliq Coupons</p>
+                      <p class="list-items">Shopclues Coupons</p>
+                      <p class="list-items">Koovs Coupons</p>
+                      <p class="list-items">Paytm Coupons</p>
+                      <p class="list-items">Zomato Coupons</p>
+                      <p class="list-items">Goair Coupons</p>
+                      <p class="list-items">Justrelief Coupons</p>
+                  </div>
+                  <div class="d-flex flex-column block-footer">
+                      <h5 class="footer-headings">Need Help?</h5>
+                      <p class="list-items">Getting Started</p>
+                      <p class="list-items">Contact Us</p>
+                      <p class="list-items">FAQ's</p>
+                      <p class="list-items">Press</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="d-flex flex-column pl-md-5 px-4">
+                  <h5 class="footer-headings pl-md-2">Download App</h5>
+                  <div class="g-play pb-5  border-left">
+                      <img class="img-g" src="https://i.imgur.com/9Txjm5w.png">
+                  </div>
+                  <div class="d-flex flex-column pl-md-2 border-left pb-3">
+                      <h5 class="footer-headings mb-3">Follow Us</h5>
+                      <div class="row d-flex pl-2">
+                          <div class="fa fa-sm fa-facebook"></div>
+                          <div class="fa fa-sm fa-twitter"></div>
+                          <div class="fa fa-sm fa-google-plus"></div>
+                          <div class="fa fa-sm fa-pinterest"></div>
+                          <div class="fa fa-sm fa-linkedin"></div>
+                          <div class="fa fa-sm fa-youtube-play"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
-</nav>
-
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>

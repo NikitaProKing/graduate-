@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.core.validators import MaxLengthValidator
 from django.forms import forms
+from django.template.defaultfilters import slugify
+from django.urls import reverse
 
 
 class Profile(models.Model):
@@ -34,3 +36,19 @@ class VisitedPage(models.Model):
 class Home_Model(models.Model):
     my_file = models.FileField(upload_to='files/')
     my_image = models.ImageField(upload_to='images/')
+
+class Add_a_recipe_Model(models.Model):
+    title = models.CharField(max_length=255)
+    img = models.ImageField()
+    slug = models.SlugField(unique=True, max_length=255)
+    content = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    author = models.TextField()
+
+    # def get_absolute_url(self):
+    #     return reverse('blog_post_detail', args=[self.slug])
+    #
+    # def save(self, *args, **kwargs):
+    #     if not self.slug:
+    #         self.slug = slugify(self.title)
+    #     super(Post, self).save(*args, **kwargs)
