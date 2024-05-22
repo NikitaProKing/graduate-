@@ -11,17 +11,7 @@ class Profile(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=16)
 
-class News(models.Model):
-    def clean_name(self):
-        name = self.cleaned_data['name']
-        if not name:
-            raise forms.ValidationError('Поле не должно быть пустым.')
-        return name
-    name = models.CharField('Name:', max_length=30)
-    category = models.CharField('Category:', max_length=50)
-    full_text = models.TextField('Publication:', max_length=200)
-    date = models.DateTimeField('Publication date:', validators=[clean_name])
-    slug = models.SlugField(null=False, unique=True)
+
 
 
 class VisitedPage(models.Model):
@@ -38,17 +28,13 @@ class Home_Model(models.Model):
     my_image = models.ImageField(upload_to='images/')
 
 class Add_a_recipe_Model(models.Model):
-    title = models.CharField(max_length=255)
-    img = models.ImageField()
+    title = models.CharField('Название', max_length=255)
+    img = models.ImageField('Изображение')
     slug = models.SlugField(unique=True, max_length=255)
-    content = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
-    author = models.TextField()
+    content = models.TextField('Описание')
+    created_on = models.DateTimeField('Дата', auto_now_add=True)
+    author = models.CharField('Автор блюда', max_length=50)
 
-    # def get_absolute_url(self):
-    #     return reverse('blog_post_detail', args=[self.slug])
-    #
-    # def save(self, *args, **kwargs):
-    #     if not self.slug:
-    #         self.slug = slugify(self.title)
-    #     super(Post, self).save(*args, **kwargs)
+    def str(self):
+        return self.title
+

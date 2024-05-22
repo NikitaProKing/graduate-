@@ -2,18 +2,32 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.checks import messages
-from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.core.paginator import Paginator
-from .forms import LoginForm, RegForm
-from .models import Profile, VisitedPage, Home_Model
+from .forms import LoginForm, RegForm, Add_a_recipe_Form
+from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model
 
 
 @login_required
 def profile_view(request):
     return render(request, 'profile.html')
+
+def edit_recipes(request, recipes_id):
+    recipes = get_object_or_404(Add_a_recipe_Model, id=recipes_id)
+    if request.user != recipes.author:
+        return HttpResponse('You are not allowed to edit this test.')
+    if request.method == 'POST':
+        form = Add_a_recipe_Form(request.POST, instance=recipes)
+        if form.is_valid():
+            form.save()
+            return redirect('recipes_detail', test_id=recipes.id)
+    else:
+        form = Add_a_recipe_Form(instance=recipes)
+    return render(request, 'edit_test.html', {'form': form})
 
 
 def login_view(request):
@@ -55,3 +69,7 @@ def home_view(request):
     page = request.GET.get('page')
     my_objects = paginator.get_page(page)
     return render(request, 'home.html', {'my_objects': my_objects})
+
+def recipes_list(request):
+    recipes = Add_a_recipe_Model.objects.filter(is_published=True)
+    return render(request, 'recipes_list.html', {'recipes': recipes})

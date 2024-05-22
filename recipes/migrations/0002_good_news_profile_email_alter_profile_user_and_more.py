@@ -32,7 +32,6 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=30, verbose_name='Name:')),
                 ('category', models.CharField(max_length=50, verbose_name='Category:')),
                 ('full_text', models.TextField(max_length=200, verbose_name='Publication:')),
-                ('date', models.DateTimeField(validators=[recipes.models.News.clean_name], verbose_name='Publication date:')),
                 ('slug', models.SlugField(unique=True)),
             ],
         ),

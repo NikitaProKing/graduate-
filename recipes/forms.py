@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
+from .models import Add_a_recipe_Model
 
 
 
@@ -32,3 +33,8 @@ class RegForm(UserCreationForm):
 
 class Add_a_recipe_Form(forms.Form):
     pass
+
+class Add_a_recipe_Form(forms.ModelForm):
+    class Meta:
+        model = Add_a_recipe_Model
+        fields = ['title']
