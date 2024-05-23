@@ -64,7 +64,7 @@ def logout_view(request):
     return redirect('/')
 
 def home_view(request):
-    my_queryset = Home_Model.objects.all()
+    my_queryset = Add_a_recipe_Model.objects.all()
     paginator = Paginator(my_queryset, 25)
     page = request.GET.get('page')
     my_objects = paginator.get_page(page)
@@ -72,4 +72,4 @@ def home_view(request):
 
 def recipes_list(request):
     recipes = Add_a_recipe_Model.objects.filter(is_published=True)
-    return render(request, 'recipes_list.html', {'recipes': recipes})
+    return render(request, 'Add_a_recipe.html', {'recipes': recipes})

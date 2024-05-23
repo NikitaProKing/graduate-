@@ -37,4 +37,4 @@ class Add_a_recipe_Form(forms.Form):
 class Add_a_recipe_Form(forms.ModelForm):
     class Meta:
         model = Add_a_recipe_Model
-        fields = ['title']
+        fields = '__all__'

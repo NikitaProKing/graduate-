@@ -23,6 +23,9 @@ class VisitedPage(models.Model):
         return f"{self.user} visited {self.page_name} at {self.timestamp}"
 
 
+class Categories(models.Model):
+    name = models.CharField('Категория', max_length=50)
+
 class Home_Model(models.Model):
     my_file = models.FileField(upload_to='files/')
     my_image = models.ImageField(upload_to='images/')
@@ -33,7 +36,10 @@ class Add_a_recipe_Model(models.Model):
     slug = models.SlugField(unique=True, max_length=255)
     content = models.TextField('Описание')
     created_on = models.DateTimeField('Дата', auto_now_add=True)
-    author = models.CharField('Автор блюда', max_length=50)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    categories = models.ForeignKey(Categories, on_delete=models.CASCADE)
+    is_published = models.BooleanField(default=False)
+
 
     def str(self):
         return self.title
