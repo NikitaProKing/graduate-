@@ -8,26 +8,14 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.core.paginator import Paginator
-from .forms import LoginForm, RegForm, Add_a_recipe_Form
-from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model
+from .forms import LoginForm, RegForm, Add_a_recipe_Form, CommentForm
+from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel
 
 
 @login_required
 def profile_view(request):
     return render(request, 'profile.html')
 
-def edit_recipes(request, recipes_id):
-    recipes = get_object_or_404(Add_a_recipe_Model, id=recipes_id)
-    if request.user != recipes.author:
-        return HttpResponse('You are not allowed to edit this recipe.')
-    if request.method == 'POST':
-        form = Add_a_recipe_Form(request.POST, request.FILES, instance=recipes)
-        if form.is_valid():
-            form.save()
-            return redirect('recipes_detail', recipes_id=recipes.id)
-    else:
-        form = Add_a_recipe_Form(instance=recipes)
-    return render(request, 'edit_recipe.html', {'form': form})
 
 def add_recipe(request):
     if request.method == 'POST':
@@ -97,3 +85,35 @@ class Add_Views(CreateView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+@login_required
+def edit_recipes(request, recipes_id):
+    recipes = get_object_or_404(Add_a_recipe_Model, id=recipes_id)
+    if request.user != recipes.author:
+        return HttpResponse('You are not allowed to edit this recipe.')
+    if request.method == 'POST':
+        form = Add_a_recipe_Form(request.POST, request.FILES, instance=recipes)
+        if form.is_valid():
+            form.save()
+            return redirect('recipes_detail', recipes_id=recipes.id)
+    else:
+        form = Add_a_recipe_Form(instance=recipes)
+    return render(request, 'edit_recipe.html', {'form': form})
+
+
+def commentView(request, post_id):
+    post = get_object_or_404(CommentModel, id=post_id)
+    comments = post.comments.all()
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.post = post
+            new_comment.author = request.user
+            new_comment.save()
+            return redirect('post_detail', post_id=post.id)
+    else:
+        form = CommentForm()
+
+    return render(request, 'comment.html', {'post': post, 'comments': comments, 'form': form})
