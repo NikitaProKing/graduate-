@@ -37,6 +37,7 @@ class Add_a_recipe_Form(forms.ModelForm):
     class Meta:
         model = Add_a_recipe_Model
         fields = '__all__'
+        exclude = ['author']
 
 class CommentForm(forms.ModelForm):
     class Meta:
