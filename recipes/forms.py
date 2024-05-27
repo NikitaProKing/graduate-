@@ -31,8 +31,7 @@ class RegForm(UserCreationForm):
         model = User
         fields = ['username', 'last_name', 'email', 'password1', 'password2']
 
-class Add_a_recipe_Form(forms.Form):
-    pass
+
 
 class Add_a_recipe_Form(forms.ModelForm):
     class Meta:

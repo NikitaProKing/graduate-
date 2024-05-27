@@ -12,8 +12,6 @@ class Profile(models.Model):
     password = models.CharField(max_length=16)
 
 
-
-
 class VisitedPage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     page_name = models.CharField(max_length=100)
@@ -26,9 +24,14 @@ class VisitedPage(models.Model):
 class Categories(models.Model):
     name = models.CharField('Категория', max_length=50)
 
+    def __str__(self):
+        return self.name
+
+
 class Home_Model(models.Model):
     my_file = models.FileField(upload_to='files/')
     my_image = models.ImageField(upload_to='images/')
+
 
 class Add_a_recipe_Model(models.Model):
     title = models.CharField('Название', max_length=255)
@@ -40,7 +43,5 @@ class Add_a_recipe_Model(models.Model):
     categories = models.ForeignKey(Categories, on_delete=models.CASCADE)
     is_published = models.BooleanField(default=False)
 
-
-    def str(self):
+    def __str__(self):
         return self.title
-

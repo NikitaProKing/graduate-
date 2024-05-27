@@ -19,17 +19,29 @@ def profile_view(request):
 def edit_recipes(request, recipes_id):
     recipes = get_object_or_404(Add_a_recipe_Model, id=recipes_id)
     if request.user != recipes.author:
-        return HttpResponse('You are not allowed to edit this test.')
+        return HttpResponse('You are not allowed to edit this recipe.')
     if request.method == 'POST':
-        form = Add_a_recipe_Form(request.POST, instance=recipes)
+        form = Add_a_recipe_Form(request.POST, request.FILES, instance=recipes)
         if form.is_valid():
             form.save()
-            return redirect('recipes_detail', test_id=recipes.id)
+            return redirect('recipes_detail', recipes_id=recipes.id)
     else:
         form = Add_a_recipe_Form(instance=recipes)
-    return render(request, 'edit_test.html', {'form': form})
+    return render(request, 'edit_recipe.html', {'form': form})
 
+def add_recipe(request):
+    if request.method == 'POST':
+        form = Add_a_recipe_Form(request.POST, request.FILES)
+        if form.is_valid():
+            new_recipe = form.save(commit=False)
+            new_recipe.author = request.user
+            new_recipe.save()
 
+            return redirect('profile')
+    else:
+        form = Add_a_recipe_Form()
+
+    return render(request, 'Add_a_recipe.html', {'form': form})
 def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -73,3 +85,15 @@ def home_view(request):
 def recipes_list(request):
     recipes = Add_a_recipe_Model.objects.filter(is_published=True)
     return render(request, 'Add_a_recipe.html', {'recipes': recipes})
+
+
+class Add_Views(CreateView):
+    model = Add_a_recipe_Model
+    template_name = 'Add_a_recipe.html'
+    form_class = Add_a_recipe_Form
+    success_url = reverse_lazy('profile')
+    context_object_name = 'form'
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
