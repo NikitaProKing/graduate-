@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from django.core.paginator import Paginator
 from .forms import LoginForm, RegForm, Add_a_recipe_Form, CommentForm
 from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel
@@ -115,3 +115,10 @@ def commentView(request):
         form = CommentForm()
 
     return render(request, 'comment.html', { 'form': form})
+
+
+class MyDetailView1(DetailView):
+    model = CommentModel
+    template_name = 'detail.html'
+    context_object_name = 'detail'
+    slug_field = 'slug'
