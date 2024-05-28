@@ -101,19 +101,17 @@ def edit_recipes(request, recipes_id):
     return render(request, 'edit_recipe.html', {'form': form})
 
 
-def commentView(request, post_id):
-    post = get_object_or_404(CommentModel, id=post_id)
-    comments = post.comments.all()
+def commentView(request):
+
 
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             new_comment = form.save(commit=False)
-            new_comment.post = post
             new_comment.author = request.user
             new_comment.save()
-            return redirect('post_detail', post_id=post.id)
+            return redirect('post_detail')
     else:
         form = CommentForm()
 
-    return render(request, 'comment.html', {'post': post, 'comments': comments, 'form': form})
+    return render(request, 'comment.html', { 'form': form})
