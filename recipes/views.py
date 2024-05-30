@@ -16,7 +16,7 @@ from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, Commen
 def profile_view(request):
     return render(request, 'profile.html')
 
-
+@login_required
 def add_recipe(request):
     if request.method == 'POST':
         form = Add_a_recipe_Form(request.POST, request.FILES)
@@ -70,11 +70,12 @@ def home_view(request):
     my_objects = paginator.get_page(page)
     return render(request, 'home.html', {'my_objects': my_objects})
 
+
 def recipes_list(request):
     recipes = Add_a_recipe_Model.objects.filter(is_published=True)
     return render(request, 'Add_a_recipe.html', {'recipes': recipes})
 
-
+@login_required
 class Add_Views(CreateView):
     model = Add_a_recipe_Model
     template_name = 'Add_a_recipe.html'
@@ -117,8 +118,12 @@ def commentView(request):
     return render(request, 'comment.html', { 'form': form})
 
 
-class MyDetailView1(DetailView):
-    model = CommentModel
-    template_name = 'detail.html'
-    context_object_name = 'detail'
-    slug_field = 'slug'
+# class MyDetailView(DetailView):
+#     model = CommentModel
+#     template_name = 'detail.html'
+#     context_object_name = 'detail'
+#     slug_field = 'slug'
+
+def product_detail(request, product_id):
+    product = get_object_or_404(Add_a_recipe_Model, pk=product_id)
+    return render(request, 'detail.html', {'product': product})

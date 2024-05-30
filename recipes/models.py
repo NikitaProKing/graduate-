@@ -47,6 +47,11 @@ class Add_a_recipe_Model(models.Model):
         return self.title
 
 
+class Detail(models.Model):
+    imge = models.ForeignKey(Add_a_recipe_Model, on_delete=models.CASCADE)
+
+
+
 class CommentModel(models.Model):
     post = models.ForeignKey(Add_a_recipe_Model, on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -55,3 +60,4 @@ class CommentModel(models.Model):
 
     def __str__(self):
         return f'Comment by {self.author} on {self.post}'
+
