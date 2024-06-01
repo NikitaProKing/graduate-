@@ -52,6 +52,7 @@ class Detail(models.Model):
 
 
 
+
 class CommentModel(models.Model):
     post = models.ForeignKey(Add_a_recipe_Model, on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
