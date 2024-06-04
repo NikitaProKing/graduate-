@@ -51,6 +51,7 @@ class Add_a_recipe_Model(models.Model):
     categories = models.ForeignKey(Categories, on_delete=models.CASCADE)
     is_published = models.BooleanField(default=False)
 
+
     def __str__(self):
         return self.title
 

@@ -14,8 +14,9 @@ from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, Commen
 
 @login_required
 def profile_view(request):
-    user_products = Add_a_recipe_Model.objects.filter(user=request.user)
-    return render(request, 'profile.html', {'products': user_products})
+    products_count = Add_a_recipe_Model.objects.filter(author=request.user).count()
+    return render(request, 'profile.html', {'products_count': products_count})
+
 
 @login_required
 def add_recipe(request):
@@ -119,12 +120,10 @@ def commentView(request):
     return render(request, 'comment.html', { 'form': form})
 
 
-# class MyDetailView(DetailView):
-#     model = CommentModel
-#     template_name = 'detail.html'
-#     context_object_name = 'detail'
-#     slug_field = 'slug'
+class MyDetailView(DetailView):
+    model = Add_a_recipe_Model
+    template_name = 'detail.html'
+    context_object_name = 'detail'
+    slug_field = 'slug'
 
-def product_detail(request, product_id):
-    product = get_object_or_404(Add_a_recipe_Model, pk=product_id)
-    return render(request, 'detail.html', {'product': product})
+
