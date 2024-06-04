@@ -14,7 +14,8 @@ from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, Commen
 
 @login_required
 def profile_view(request):
-    return render(request, 'profile.html')
+    user_products = Add_a_recipe_Model.objects.filter(user=request.user)
+    return render(request, 'profile.html', {'products': user_products})
 
 @login_required
 def add_recipe(request):

@@ -1,345 +1,65 @@
 {% load static %}
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <link rel="stylesheet" href="{% static 'css/home_footer.css' %}">-->
-<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">-->
-<!--    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>-->
-<!--    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">-->
-<!--    <title>Home</title>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #F57C00">-->
-<!--      <div class="container-fluid">-->
-<!--        <a class="navbar-brand" href="{% url 'profile' %}"><img src="https://img2.freepng.ru/20230821/cre/transparent-shawarma-64e374e14b33d3.335201741692628193308.jpg" style="width: 180px;"></a>-->
-<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--          <span class="navbar-toggler-icon"></span>-->
-<!--        </button>-->
-<!--        <div class="collapse navbar-collapse" id="navbarNavDropdown">-->
-<!--          <ul class="navbar-nav">-->
-<!--            <li class="nav-item">-->
-<!--              <a class="nav-link active" aria-current="page" href="#" style="color: #0a0a0a">Home</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--              <a class="nav-link" href="#" style="color: #0a0a0a">Features</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--              <a class="nav-link" href="#" style="color: #0a0a0a">Pricing</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item dropdown">-->
-<!--              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0a0a0a">-->
-<!--                Dropdown link-->
-<!--              </a>-->
-<!--              <ul class="dropdown-menu">-->
-<!--                <li><a class="dropdown-item" href="#" style="color: #0a0a0a">Action</a></li>-->
-<!--                <li><a class="dropdown-item" href="#" style="color: #0a0a0a">Another action</a></li>-->
-<!--                <li><a class="dropdown-item" href="#" style="color: #0a0a0a">Something else here</a></li>-->
-<!--              </ul>-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </nav>-->
-<!--<div class="container-fluid px-0">-->
-<!--    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed">-->
-<!--        <div class="container-fluid d-flex"> <a class="navbar-brand" href="#">SiteBack</a>-->
-<!--            <ul class="nav nav-tabs" id="myTab" role="tablist">-->
-<!--                <li class="nav-item" role="presentation"> <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Couches</a> </li>-->
-<!--                <li class="nav-item" role="presentation"> <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Chair</a> </li>-->
-<!--                <li class="nav-item" role="presentation"> <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Dining</a> </li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </nav>-->
-<!--</div>-->
-<!--<div class="container-fluid mt-2 mb-5">-->
-<!--    <div class="products">-->
-<!--        <div class="tab-content" id="myTabContent">-->
-<!--            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">-->
-<!--                <div class="d-flex justify-content-between p-3 bg-white mb-3 align-items-center"> <span class="font-weight-bold text-uppercase">Luxury Couch</span>-->
-<!--                    <div> <img src="https://img.icons8.com/windows/100/000000/list.png" width="30" /> <img src="https://img.icons8.com/ios-filled/100/000000/squared-menu.png" width="25" /> </div>-->
-<!--                </div>-->
-<!--                <div class="row g-3">-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/SOMPPzU.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-3</span> <span class="font-weight-bold">$550</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">2 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/FhRHNGE.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-3</span> <span class="font-weight-bold">$600</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">1 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/eu74Mje.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-2</span> <span class="font-weight-bold">$1,000</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">4 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/441QtPc.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-4</span> <span class="font-weight-bold">$850</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">3 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/hnX99Cr.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-5</span> <span class="font-weight-bold">$15,50</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">8 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/SOMPPzU.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-3</span> <span class="font-weight-bold">$550</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">2 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">-->
-<!--                &lt;!&ndash;Chairs&ndash;&gt;-->
-<!--                <div class="d-flex justify-content-between p-3 bg-white mb-3 align-items-center"> <span class="font-weight-bold text-uppercase">Luxury Chairs</span>-->
-<!--                    <div> <img src="https://img.icons8.com/windows/100/000000/list.png" width="30" /> <img src="https://img.icons8.com/ios-filled/100/000000/squared-menu.png" width="25" /> </div>-->
-<!--                </div>-->
-<!--                <div class="row g-3">-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/2ldaKjy.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wodden chairs set-2</span> <span class="font-weight-bold">$150</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">4 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/lTgyE2X.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wodden Chairs Premium set-2</span> <span class="font-weight-bold">$200</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">2 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/NFcMfYE.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Office Chairs set-2</span> <span class="font-weight-bold">$500</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">7 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/eu74Mje.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wodden Chair set-3</span> <span class="font-weight-bold">$350</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">3 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/L5iInTA.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Dinning chairs set-4</span> <span class="font-weight-bold">$200</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">8 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/64PRDTx.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Office Chairs set-2</span> <span class="font-weight-bold">$450</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">3 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">-->
-<!--                &lt;!&ndash;Dining&ndash;&gt;-->
-<!--                <div class="d-flex justify-content-between p-3 bg-white mb-3 align-items-center"> <span class="font-weight-bold text-uppercase">Luxury Dining</span>-->
-<!--                    <div> <img src="https://img.icons8.com/windows/100/000000/list.png" width="30" /> <img src="https://img.icons8.com/ios-filled/100/000000/squared-menu.png" width="25" /> </div>-->
-<!--                </div>-->
-<!--                <div class="row g-3">-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/hnQ492C.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Dinning table set-4</span> <span class="font-weight-bold">$450</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">4 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/10JlX4K.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Dinning set set-8</span> <span class="font-weight-bold">$2,000</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">6 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/eu74Mje.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Dinning chairs set-3</span> <span class="font-weight-bold">$900</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">4 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/uh0knIW.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Dinning table set-10</span> <span class="font-weight-bold">$3,500</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">6 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/rdYgwhr.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Table chair set-5</span> <span class="font-weight-bold">$250</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">8 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="card"> <img src="https://i.imgur.com/x6hhqGn.jpg" class="card-img-top">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">Luxury Dinning set-7</span> <span class="font-weight-bold">$750</span> </div>-->
-<!--                                <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--                                <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">6 Years Guarantee</span> </div>-->
-<!--                            </div>-->
-<!--                            <hr>-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--</body>-->
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>-->
-<!--</html>-->
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Home Page</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/home_footer.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Home</title>
 </head>
-<body>
-    <h1>Products</h1>
-    <ul>
-        {% for product in products %}
-            <li>
-                <h2>{{ product.name }}</h2>
-                <a href="{% url 'product_detail' product.id %}">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                </a>
-                <p>{{ product.description }}</p>
-                <p>Price: {{ product.price }}</p>
-            </li>
-        {% endfor %}
-    </ul>
+<body style="background-color: #F57C00">
+
+
+<div class="container-fluid px-0">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed" >
+        <div class="container-fluid d-flex" > <a class="navbar-brand" href="{% url 'profile' %}">Профиль</a>
+            <ul class="nav nav-tabs" id="myTab" role="tablist" >
+                <li class="nav-item" role="presentation"> <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Couches</a> </li>
+                <li class="nav-item" role="presentation"> <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Chair</a> </li>
+                <li class="nav-item" role="presentation"> <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Dining</a> </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="container-fluid mt-2 mb-5">
+    {% for i in my_objects  %}
+    <div class="products">
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="d-flex justify-content-between p-3 bg-white mb-3 align-items-center" style="width: 600px;"> <span class="font-weight-bold text-uppercase" >{{i.author}}</span></div>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card"> <img src="{{i.img.url}}" class="card-img-top">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">{{i.title}}</span> <span class="font-weight-bold">{{i.created_on}}</span> </div>
+                                <p class="card-text mb-1 mt-1">{{i.content}}</p>
+
+                            </div>
+                            <hr>
+                            <div class="card-body">
+                                <div class="text-right buttons"> <button class="btn btn-outline-dark">Подробно</button> <button class="btn btn-dark">Добавить в избранное</button> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>
+
+
 </body>
 </html>

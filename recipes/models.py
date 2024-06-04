@@ -29,9 +29,17 @@ class Categories(models.Model):
 
 
 class Home_Model(models.Model):
-    my_file = models.FileField(upload_to='files/')
-    my_image = models.ImageField(upload_to='images/')
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    slug = models.SlugField(unique=True, blank=True)
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def str(self):
+        return self.title
 
 class Add_a_recipe_Model(models.Model):
     title = models.CharField('Название', max_length=255)
