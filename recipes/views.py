@@ -8,8 +8,8 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView
 from django.core.paginator import Paginator
-from .forms import LoginForm, RegForm, Add_a_recipe_Form, CommentForm
-from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel
+from .forms import LoginForm, RegForm, Add_a_recipe_Form, CommentForm, PostForm
+from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel, Post
 
 
 @login_required
@@ -117,7 +117,7 @@ def commentView(request):
     else:
         form = CommentForm()
 
-    return render(request, 'comment.html', { 'form': form})
+    return render(request, 'comment.html', {'form': form})
 
 
 class MyDetailView(DetailView):
@@ -127,3 +127,13 @@ class MyDetailView(DetailView):
     slug_field = 'slug'
 
 
+
+class CreatePostView(CreateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'post.html'
+    success_url = reverse_lazy('home')
+    def form_valid(self, form):
+        for item in self.request.FILES.getlist('image'):
+                Post.objects.create(image=item, author=self.request.user)
+        return super().form_valid(form)

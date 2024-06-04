@@ -2,9 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
-from .models import Add_a_recipe_Model, CommentModel
-
-
+from .models import Add_a_recipe_Model, CommentModel, Post
 
 
 class LoginForm(forms.Form):
@@ -45,3 +43,8 @@ class CommentForm(forms.ModelForm):
         fields = ['text']
 
 
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+    fields = ['image']
+    image = forms.ImageField(label=u'Фотографии', widget=forms.FileInput(attrs={'multiple': 'multiple'}))

@@ -71,3 +71,7 @@ class CommentModel(models.Model):
     def __str__(self):
         return f'Comment by {self.author} on {self.post}'
 
+class Post(models.Model):
+    author = models.ForeignKey(User, null=True, on_delete=models.CASCADE, verbose_name='image')
+    image = models.ImageField(upload_to='images/')
+    def str(self): return str(self.author)
