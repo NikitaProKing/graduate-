@@ -1,8 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ValidationError
 from django.forms import ModelForm
-from .models import Add_a_recipe_Model, CommentModel, Post
+from .models import Add_a_recipe_Model, CommentModel, Detail
 
 
 class LoginForm(forms.Form):
@@ -30,6 +31,10 @@ class RegForm(UserCreationForm):
         fields = ['username', 'last_name', 'email', 'password1', 'password2']
 
 
+def validate_image_size(image):
+    max_size = 5 * 1024 * 1024  # 5MB
+    if image.size > max_size:
+        raise ValidationError(f'Размер файла не должен превышать {max_size // (1024 * 1024)}MB.')
 
 class Add_a_recipe_Form(forms.ModelForm):
     class Meta:
@@ -37,14 +42,19 @@ class Add_a_recipe_Form(forms.ModelForm):
         fields = '__all__'
         exclude = ['author']
 
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = CommentModel
         fields = ['text']
 
 
-class PostForm(forms.ModelForm):
+class ImageUploadForm(forms.ModelForm):
     class Meta:
-        model = Post
-    fields = ['image']
-    image = forms.ImageField(label=u'Фотографии', widget=forms.FileInput(attrs={'multiple': 'multiple'}))
+        model = Detail
+        fields = ['photo', 'text']
+
+        def clean_image(self):
+            image = self.cleaned_data.get('photo')
+            validate_image_size(image)
+            return image

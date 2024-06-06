@@ -8,8 +8,9 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, FormView
 from django.core.paginator import Paginator
-from .forms import LoginForm, RegForm, Add_a_recipe_Form, CommentForm, PostForm
-from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel, Post
+from .forms import LoginForm, RegForm, Add_a_recipe_Form, CommentForm, ImageUploadForm
+from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel
+
 
 
 @login_required
@@ -128,12 +129,24 @@ class MyDetailView(DetailView):
 
 
 
-class CreatePostView(FormView):
-    form_class = PostForm
-    template_name = 'post.html'
-    success_url = reverse_lazy('home')
-    def form_valid(self, form):
-        form.save(commit=False)
-        for item in self.request.FILES.getlist('image'):
-            Post.objects.create(image=item, author=self.request.user)
-            return super().form_valid(form)
+def upload_image(request):
+    if request.method == 'POST':
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('profile.url')
+    else:
+        form = ImageUploadForm()
+    return render(request, 'detail.html', {'form': form})
+
+
+# class CreatePostView(FormView):
+#     form_class = PostForm
+#     template_name = 'post.html'
+#     success_url = reverse_lazy('home')
+#     def form_valid(self, form):
+#         form.save(commit=False)
+#         for item in self.request.FILES.getlist('image'):
+#             Post.objects.create(image=item, author=self.request.user)
+#             return super().form_valid(form)
+

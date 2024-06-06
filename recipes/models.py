@@ -57,7 +57,8 @@ class Add_a_recipe_Model(models.Model):
 
 
 class Detail(models.Model):
-    imge = models.ForeignKey(Add_a_recipe_Model, on_delete=models.CASCADE)
+    photo = models.ImageField('Изображение', upload_to='images/')
+    text = models.TextField('Описание')
 
 
 
@@ -71,7 +72,8 @@ class CommentModel(models.Model):
     def __str__(self):
         return f'Comment by {self.author} on {self.post}'
 
-class Post(models.Model):
-    author = models.ForeignKey(User, null=True, on_delete=models.CASCADE, verbose_name='image')
-    image = models.ImageField(upload_to='images/')
-    def str(self): return str(self.author)
+# class Post(models.Model):
+#     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE, verbose_name='image')
+#     image = models.ImageField(upload_to='images/')
+#     def __str__(self):
+#       return str(self.author)
