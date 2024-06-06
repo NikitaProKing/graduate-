@@ -100,6 +100,27 @@
                 </div>
 
              </div>
+    <div class="container-fluid mt-2 mb-5">
+    {% for i in product  %}
+    <div class="products">
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card"> <img src="{{i.img.url}}" class="card-img-top">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between"> <span class="font-weight-bold">{{i.title}}</span> <span class="font-weight-bold">{{i.created_on}}</span> </div>
+                                <p class="card-text mb-1 mt-1">{{i.content}}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        {% endfor %}
+    </div>
 </body>
 </html>
