@@ -132,6 +132,7 @@ class MyDetailView(DetailView):
 
 
 
+
 # class CreatePostView(FormView):
 #     form_class = PostForm
 #     template_name = 'post.html'
