@@ -8,9 +8,8 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, FormView
 from django.core.paginator import Paginator
-from .forms import LoginForm, RegForm, Add_a_recipe_Form, CommentForm, ImageUploadForm
-from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel
-
+from .forms import LoginForm, RegForm, Add_a_recipe_Form, CommentForm, AddDetailForm
+from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel, Detail, AddDetail
 
 
 @login_required
@@ -123,22 +122,14 @@ def commentView(request):
 
 
 class MyDetailView(DetailView):
-    model = Add_a_recipe_Model
+    model = Detail
     template_name = 'detail.html'
     context_object_name = 'detail'
     slug_field = 'slug'
 
 
 
-def upload_image(request):
-    if request.method == 'POST':
-        form = ImageUploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('profile.url')
-    else:
-        form = ImageUploadForm()
-    return render(request, 'detail.html', {'form': form})
+
 
 
 # class CreatePostView(FormView):
@@ -151,3 +142,13 @@ def upload_image(request):
 #             Post.objects.create(image=item, author=self.request.user)
 #             return super().form_valid(form)
 
+class AddDetailView(CreateView):
+    model = AddDetail
+    template_name = 'add_detail.html'
+    form_class = AddDetailForm
+    success_url = reverse_lazy('profile')
+    context_object_name = 'form'
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
