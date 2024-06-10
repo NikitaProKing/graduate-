@@ -131,12 +131,12 @@ class MyDetailView(DetailView):
 
 def upload_image(request):
     if request.method == 'POST':
-        form = AddDetailViews(request.POST, request.FILES)
+        form = AddDetailForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('profile.url')
     else:
-        form = AddDetailViews()
+        form = AddDetailForm()
     return render(request, 'detail.html', {'form': form})
 
 
