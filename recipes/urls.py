@@ -14,6 +14,6 @@ urlpatterns = [
     path('comment/', views.commentView, name='comment'),
     path('<slug:slug>/', views.MyDetailView.as_view(), name='detail'),
     path('detail/', views.MyDetailView.as_view(), name='detail'),
-    path('edit_recipes/', views.edit_recipes, name='edit_recipes'),
-    path('add_detail/', views.AddDetailViews.as_view(), name='add_detail')
+    path('addDetail/', views.AddDetailView.as_view(), name='addDetail')
 ]
+

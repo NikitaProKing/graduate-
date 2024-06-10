@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, FormView
 from django.core.paginator import Paginator
 from .forms import LoginForm, RegForm, Add_a_recipe_Form, CommentForm, AddDetailForm
-from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel, AddDetailModel
+from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel, Detail, AddDetail
 
 
 @login_required
@@ -106,6 +106,8 @@ def edit_recipes(request, recipes_id):
 
 
 def commentView(request):
+
+
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -120,7 +122,7 @@ def commentView(request):
 
 
 class MyDetailView(DetailView):
-    model = Add_a_recipe_Model
+    model = Detail
     template_name = 'detail.html'
     context_object_name = 'detail'
     slug_field = 'slug'
@@ -148,9 +150,8 @@ def upload_image(request):
 #             Post.objects.create(image=item, author=self.request.user)
 #             return super().form_valid(form)
 
-
-class AddDetailViews(CreateView):
-    model = AddDetailModel
+class AddDetailView(CreateView):
+    model = AddDetail
     template_name = 'add_detail.html'
     form_class = AddDetailForm
     success_url = reverse_lazy('profile')

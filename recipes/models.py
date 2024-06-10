@@ -56,10 +56,32 @@ class Add_a_recipe_Model(models.Model):
         return self.title
 
 
-class AddDetailModel(models.Model):
+class Detail(models.Model):
+    photo = models.ImageField('Изображение', upload_to='images/')
+    text = models.TextField('Описание')
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def str(self):
+        return self.title
+
+
+class AddDetail(models.Model):
     photo = models.ImageField('Изображение')
     text = models.TextField('Описание')
+    slug = models.SlugField(unique=True, blank=True)
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def str(self):
+        return self.title
 
 
 
