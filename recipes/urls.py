@@ -4,8 +4,8 @@ from django.urls import path
 from .views import profile_view, login_view
 
 urlpatterns = [
-    path('', views.home_view, name='home'),
-    path('login/', login_view, name='login'),
+    path('home/', views.home_view, name='home'),
+    path('', login_view, name='login'),
     path('profile/', profile_view, name='profile'),
     path('reg/', views.Reg_View.as_view(), name='reg'),
     path('logout/', views.logout_view, name='logout'),
@@ -14,6 +14,7 @@ urlpatterns = [
     path('comment/', views.commentView, name='comment'),
     path('<slug:slug>/', views.MyDetailView.as_view(), name='detail'),
     path('detail/', views.MyDetailView.as_view(), name='detail'),
-    path('addDetail/', views.AddDetailView.as_view(), name='addDetail')
+    path('addDetail/', views.AddDetailView.as_view(), name='addDetail'),
+    path('edit_recipes/', views. edit_recipes, name='edit_recipes')
 ]
 
