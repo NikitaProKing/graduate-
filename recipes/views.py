@@ -99,10 +99,10 @@ def edit_recipes(request, recipes_id):
         form = Add_a_recipe_Form(request.POST, request.FILES, instance=recipes)
         if form.is_valid():
             form.save()
-            return redirect('edit_recipe.html', recipes_id=recipes.id)
+            return redirect('edit_recipes.html', recipes_id=recipes.id)
     else:
         form = Add_a_recipe_Form(instance=recipes)
-    return render(request, 'edit_recipe.html', {'form': form})
+    return render(request, 'edit_recipes.html', {'form': form})
 
 
 def commentView(request):
