@@ -96,13 +96,13 @@ def edit_recipes(request, recipes_id):
     if request.user != recipes.author:
         return HttpResponse('You are not allowed to edit this recipe.')
     if request.method == 'POST':
-        form = Add_a_recipe_Form(request.POST, request.FILES, instance=recipes)
-        if form.is_valid():
-            form.save()
+        edit = Add_a_recipe_Form(request.POST, request.FILES, instance=recipes)
+        if edit.is_valid():
+            edit.save()
             return redirect('edit_recipes.html', recipes_id=recipes.id)
     else:
-        form = Add_a_recipe_Form(instance=recipes)
-    return render(request, 'edit_recipes.html', {'form': form})
+        edit = Add_a_recipe_Form(instance=recipes)
+    return render(request, 'edit_recipes.html', {'edit': edit})
 
 
 def commentView(request):
