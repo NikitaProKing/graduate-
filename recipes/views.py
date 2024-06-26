@@ -8,8 +8,8 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, FormView
 from django.core.paginator import Paginator
-from .forms import LoginForm, RegForm, Add_a_recipe_Form, CommentForm, AddDetailForm
-from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel, Detail, AddDetail
+from .forms import LoginForm, RegForm, Add_a_recipe_Form, CommentForm, DetailForm
+from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel, Detail, Detail
 
 
 @login_required
@@ -56,7 +56,7 @@ class Reg_View(CreateView):
     form_class = RegForm
     success_url = reverse_lazy('login')
     context_object_name = 'form'
-
+    
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
@@ -106,8 +106,6 @@ def edit_recipes(request, recipes_id):
 
 
 def commentView(request):
-
-
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -127,16 +125,18 @@ class MyDetailView(DetailView):
     context_object_name = 'detail'
     slug_field = 'slug'
 
-
+def detail(request, recipes_id):
+    detail = Detail.objects.filter(pk=recipes_id, author=request.user)
+    return render(request, 'detail.html', {'detail': detail})
 
 def upload_image(request):
     if request.method == 'POST':
-        form = AddDetailForm(request.POST, request.FILES)
+        form = DetailForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('profile.url')
     else:
-        form = AddDetailForm()
+        form = DetailForm()
     return render(request, 'detail.html', {'form': form})
 
 
@@ -151,9 +151,9 @@ def upload_image(request):
 #             return super().form_valid(form)
 
 class AddDetailView(CreateView):
-    model = AddDetail
+    model = Detail
     template_name = 'add_detail.html'
-    form_class = AddDetailForm
+    form_class = DetailForm
     success_url = reverse_lazy('profile')
     context_object_name = 'form'
 
