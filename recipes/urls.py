@@ -12,10 +12,11 @@ urlpatterns = [
     path('recipes_list/', views.recipes_list, name='recipes_list'),
     path('add-recipe/', views.add_recipe, name='add_recipe'),
     path('comment/', views.commentView, name='comment'),
-    path('<slug:slug>/', views.MyDetailView.as_view(), name='detail'),
-    path('detail/<int:recipes_id>', views.detail, name='detail'),
+    path('Detail/<slug:slug>/', views.MyDetailView.as_view(), name='detail1'),
+    # path('detail/<int:pk>', views.detail, name='detail'),
     path('addDetail/<int:recipes_id>', views.AddDetailView.as_view(), name='addDetail'),
     path('edit_recipes/<int:recipes_id>', views. edit_recipes, name='edit_recipes'),
-    # path('favorite/', views.favorite_view, name='favorite')
+    # path('favorite/', views.favorite_view, name='favorite'),
+
 ]
 

@@ -5,10 +5,10 @@
     <title>{{ product.name }}</title>
 </head>
 <body>
-    {% for i in form %}
+    {% for i in detail %}
     <form enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ i.as_p }}
         <button type="submit">Upload</button>
     </form>
     {% endfor %}

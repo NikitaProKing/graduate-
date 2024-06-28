@@ -125,9 +125,6 @@ class MyDetailView(DetailView):
     context_object_name = 'detail'
     slug_field = 'slug'
 
-def detail(request, recipes_id):
-    detail = Detail.objects.filter(pk=recipes_id, author=request.user)
-    return render(request, 'detail.html', {'detail': detail})
 
 def upload_image(request):
     if request.method == 'POST':
