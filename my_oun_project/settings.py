@@ -135,3 +135,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = 'profile'
 LOGOUT_REDIRECT_URL = 'login'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https:// prohorov.student-project-it-academy.tw1.ru',
+    'https://www.prohorov.student-project-it-academy.tw1.ru'
+    ]
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
