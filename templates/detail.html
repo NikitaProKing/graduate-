@@ -6,10 +6,10 @@
 </head>
 <body>
     {% for i in detail %}
-    <form enctype="multipart/form-data">
+    <form method="get" enctype="multipart/form-data">
         {% csrf_token %}
         {{ i.as_p }}
-        <button type="submit">Upload</button>
+        <button type="submit">Подписаться</button>
     </form>
     {% endfor %}
 </body>

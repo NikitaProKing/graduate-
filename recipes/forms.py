@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
-from .models import Add_a_recipe_Model, CommentModel, Detail
+from .models import Add_a_recipe_Model, CommentModel, Detail_Model
 
 
 class LoginForm(forms.Form):
@@ -51,7 +51,7 @@ class CommentForm(forms.ModelForm):
 
 class DetailForm(forms.ModelForm):
     class Meta:
-        model = Detail
+        model = Detail_Model
         fields = ['photo', 'text']
 
         def clean_image(self):
@@ -60,7 +60,7 @@ class DetailForm(forms.ModelForm):
             return image
 
 
-class EditRecipesForm(forms.ModelForm):
-    class Meta:
-        model = Add_a_recipe_Model
-        fields = '__all__'
+# class EditRecipesForm(forms.ModelForm):
+#     class Meta:
+#         model = Add_a_recipe_Model
+#         fields = '__all__'
