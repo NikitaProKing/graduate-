@@ -27,10 +27,12 @@ SECRET_KEY = 'django-insecure-9$=ny+b-((yth%@yg^b9weh43uis5sop)nyp$yi7i$2k74rpur
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://prohorov.student-project-it-academy.tw1.ru/',
-                 'https://www.prohorov.student-project-it-academy.tw1.ru/',
+ALLOWED_HOSTS = ['https://prohorov.student-project-it-academy.tw1.ru',
+                 'https://www.prohorov.student-project-it-academy.tw1.ru',
                  '127.0.0.1',
-                 'localhost']
+                 'localhost',
+                 'prohorov.student-project-it-academy.tw1.ru',
+                 'www.prohorov.student-project-it-academy.tw1.ru']
 
 
 # Application definition
