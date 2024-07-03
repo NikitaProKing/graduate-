@@ -28,7 +28,9 @@ SECRET_KEY = 'django-insecure-9$=ny+b-((yth%@yg^b9weh43uis5sop)nyp$yi7i$2k74rpur
 DEBUG = True
 
 ALLOWED_HOSTS = ['https://prohorov.student-project-it-academy.tw1.ru/',
-                 'https://www.prohorov.student-project-it-academy.tw1.ru/', '127.0.0.1', 'localhost']
+                 'https://www.prohorov.student-project-it-academy.tw1.ru/',
+                 '127.0.0.1',
+                 'localhost']
 
 
 # Application definition
