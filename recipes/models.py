@@ -59,7 +59,8 @@ class Add_a_recipe_Model(models.Model):
 class Detail_Model(models.Model):
     photo = models.ImageField('Изображение', upload_to='images/')
     text = models.TextField('Описание')
-    title = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.ForeignKey(Add_a_recipe_Model, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, blank=True)
 
     def save(self, *args, **kwargs):
@@ -83,4 +84,3 @@ class CommentModel(models.Model):
 #
 # class EditRecipesModel(models.Model):
 #     edit = models.ForeignKey(Add_a_recipe_Model, on_delete=models.CASCADE)
-

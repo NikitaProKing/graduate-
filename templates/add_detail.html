@@ -1,18 +1,40 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script>
+        function addField() {
+            const container = document.getElementById("dynamic-fields");
+            const newField = document.createElement("div");
+            newField.innerHTML = `
+
+                <div class="form-group">
+                    <label for="id_image">Изображение:</label>
+                    <input type="file" name="image" class="form-control" id="id_image">
+                </div>
+                <div class="form-group">
+                    <label for="id_description">Описание:</label>
+                    <input type="text" name="description" class="form-control" id="id_description">
+                </div>
+                <form method="post">{% csrf_token %}
+                                        <button type="submit">Delete</button>
+                                    </form>
+            `;
+            container.appendChild(newField);
+        }
+    </script>
 </head>
 <body>
-    <div class="p-3 justify-content-cent er text-center">
-        <form method="POST">
-            {% csrf_token %}
+<div class="p-3 justify-content-center text-center">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id="dynamic-fields">
             {{ form.as_p }}
-            <button type="submit" >Завершить</button>
-            <button type="submit" >+</button>
-        </form>
-    </div>
+        </div>
+        <button type="submit">Завершить</button>
+        <button type="button" onclick="addField()">+</button>
+    </form>
+</div>
 </body>
 </html>

@@ -1,7 +1,9 @@
+from django.views.generic import DeleteView
+
 from .import views
 from django.urls import path
 
-from .views import profile_view, login_view
+from .views import profile_view, login_view, MyDeleteView
 
 urlpatterns = [
     path('home/', views.home_view, name='home'),
@@ -17,6 +19,6 @@ urlpatterns = [
     path('addDetail/<int:recipes_id>', views.AddDetailView.as_view(), name='addDetail'),
     path('edit_recipes/<int:recipes_id>', views. edit_recipes, name='edit_recipes'),
     # path('favorite/', views.favorite_view, name='favorite'),
-
+    path('Delete/<int:pk>/delete/', MyDeleteView.as_view(), name='Delete-delete')
 ]
 

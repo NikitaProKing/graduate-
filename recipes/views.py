@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, FormView
+from django.views.generic import CreateView, DetailView, FormView, DeleteView
 from django.core.paginator import Paginator
 from .forms import LoginForm, RegForm, Add_a_recipe_Form, CommentForm, DetailForm
 from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel, Detail_Model
@@ -147,6 +147,7 @@ def upload_image(request):
 #             Post.objects.create(image=item, author=self.request.user)
 #             return super().form_valid(form)
 
+
 class AddDetailView(CreateView):
     model = Detail_Model
     template_name = 'add_detail.html'
@@ -155,5 +156,12 @@ class AddDetailView(CreateView):
     context_object_name = 'form'
 
     def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
+        # Обработка сохранения нескольких форм
+        for description, image in zip(self.request.POST.getlist('description'), self.request.FILES.getlist('image')):
+            Detail_Model.objects.create(description=description, image=image)
+        return redirect(self.success_url)
+
+
+class MyDeleteView(DeleteView):
+    model = Detail_Model
+
