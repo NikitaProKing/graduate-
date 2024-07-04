@@ -163,5 +163,11 @@ class AddDetailView(CreateView):
 
 
 class MyDeleteView(DeleteView):
-    model = Detail_Model
+    model = Add_a_recipe_Model
+    success_url = reverse_lazy('profile')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['custom_context'] = 'some_value'
+        return context
 
