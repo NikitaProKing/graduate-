@@ -84,3 +84,11 @@ class CommentModel(models.Model):
 #
 # class EditRecipesModel(models.Model):
 #     edit = models.ForeignKey(Add_a_recipe_Model, on_delete=models.CASCADE)
+
+class Favorite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    item = models.ForeignKey(Add_a_recipe_Model, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user.username} - {self.item.name}'

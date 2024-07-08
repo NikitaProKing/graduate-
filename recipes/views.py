@@ -6,10 +6,11 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login
 from django.urls import reverse_lazy
+from django.views.decorators.http import require_POST
 from django.views.generic import CreateView, DetailView, FormView, DeleteView
 from django.core.paginator import Paginator
 from .forms import LoginForm, RegForm, Add_a_recipe_Form, CommentForm, DetailForm
-from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel, Detail_Model
+from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel, Detail_Model, Favorite
 
 
 @login_required
@@ -172,3 +173,14 @@ class MyDeleteView(DeleteView):
         return context
 
 # class Add_Detail_Delete_View(DeleteView):
+
+@login_required
+@require_POST
+def add_to_favoritesView(request, item_id):
+    item = Add_a_recipe_Model.objects.get(id=item_id)
+    favorite, created = Favorite.objects.get_or_create(user=request.user, item=item)
+
+    if created:
+        return HttpResponse('Товар добавлен в избранное')
+    else:
+        return HttpResponse('Товар уже в избранном')

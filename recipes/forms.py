@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
-from .models import Add_a_recipe_Model, CommentModel, Detail_Model
+from .models import Add_a_recipe_Model, CommentModel, Detail_Model, Favorite
 
 
 class LoginForm(forms.Form):
@@ -64,3 +64,8 @@ class DetailForm(forms.ModelForm):
 #     class Meta:
 #         model = Add_a_recipe_Model
 #         fields = '__all__'
+
+class FavoriteForm(forms.ModelForm):
+    class Meta:
+        model = Favorite
+        fields = ['item']
