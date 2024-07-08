@@ -157,8 +157,8 @@ class AddDetailView(CreateView):
 
     def form_valid(self, form):
         # Обработка сохранения нескольких форм
-        for description, image in zip(self.request.POST.getlist('description'), self.request.FILES.getlist('image')):
-            Detail_Model.objects.create(description=description, image=image)
+        for text, photo in zip(self.request.POST.getlist('text'), self.request.FILES.getlist('photo')):
+            Detail_Model.objects.create()
         return redirect(self.success_url)
 
 
@@ -171,3 +171,4 @@ class MyDeleteView(DeleteView):
         context['custom_context'] = 'some_value'
         return context
 
+# class Add_Detail_Delete_View(DeleteView):

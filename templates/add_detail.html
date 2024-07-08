@@ -1,14 +1,104 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: calc(100% - 20px);
+            padding: 8px 10px;
+            margin: 0;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-group input[type="file"] {
+            padding: 3px 10px;
+        }
+
+        .dynamic-field {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #e2e2e2;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+
+        .dynamic-field button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .dynamic-field button:hover {
+            background-color: #c0392b;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+    </style>
     <script>
         function addField() {
             const container = document.getElementById("dynamic-fields");
             const newField = document.createElement("div");
+            newField.classList.add("dynamic-field");
             newField.innerHTML = `
-
                 <div class="form-group">
                     <label for="id_image">Изображение:</label>
                     <input type="file" name="image" class="form-control" id="id_image">
@@ -17,23 +107,27 @@
                     <label for="id_description">Описание:</label>
                     <input type="text" name="description" class="form-control" id="id_description">
                 </div>
-                <form method="post">{% csrf_token %}
-                                        <button type="submit">Delete</button>
-                                    </form>
+                <button type="button" onclick="removeField(this)">Удалить</button>
             `;
             container.appendChild(newField);
+        }
+
+        function removeField(button) {
+            const field = button.parentNode;
+            field.classList.add("removing");
+            setTimeout(() => field.remove(), 300);
         }
     </script>
 </head>
 <body>
-<div class="p-3 justify-content-center text-center">
+<div class="container">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div id="dynamic-fields">
             {{ form.as_p }}
         </div>
-        <button type="submit">Завершить</button>
-        <button type="button" onclick="addField()">+</button>
+        <button type="submit" class="btn">Завершить</button>
+        <button type="button" class="btn btn-secondary" onclick="addField()">+</button>
     </form>
 </div>
 </body>
