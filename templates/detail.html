@@ -9,7 +9,11 @@
     <form method="get" enctype="multipart/form-data">
         {% csrf_token %}
         {{ i.as_p }}
-        <button type="submit">Подписаться</button>
+            <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Subscribe</button>
+        </form>
     </form>
     {% endfor %}
 </body>

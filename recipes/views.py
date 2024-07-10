@@ -121,11 +121,11 @@ def commentView(request):
     return render(request, 'comment.html', {'form': form})
 
 
-# class MyDetailView(DetailView):
-#     model = Detail_
-#     template_name = 'detail.html'
-#     context_object_name = 'detail'
-#     slug_field = 'slug'
+class MyDetailView(DetailView):
+    model = Detail_Model
+    template_name = 'detail.html'
+    context_object_name = 'detail'
+    slug_field = 'slug'
 
 
 def upload_image(request):
