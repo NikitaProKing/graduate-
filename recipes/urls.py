@@ -21,5 +21,8 @@ urlpatterns = [
     # path('favorite/', views.favorite_view, name='favorite'),
     path('Delete/<int:pk>/', MyDeleteView.as_view(), name='Delete-delete'),
     path('add-to-favorites/<int:item_id>/', views.add_to_favoritesView, name='add_to_favorites'),
+    path('subscribe/', views.subscribe, name='subscribe'),
+    path('unsubscribe/', views.unsubscribe, name='unsubscribe'),
+    path('subscriptions/', views.subscriptions_list, name='subscriptions'),
 ]
 

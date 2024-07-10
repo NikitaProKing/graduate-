@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             const itemId = this.dataset.itemId;
             const csrftoken = getCookie('csrftoken');
-            const button = this;
 
             fetch(`/add-to-favorites/${itemId}/`, {
                 method: 'POST',
@@ -24,35 +23,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         icon: 'success',
                         title: 'Добавлено в избранное',
                         showConfirmButton: false,
-                        timer: 1500,
-                        toast: true,
-                        position: 'top-end',
-                        background: '#343a40',
-                        color: '#ffffff',
-                        showClass: {
-                            popup: 'animate__animated animate__fadeInRight'
-                        },
-                        hideClass: {
-                            popup: 'animate__animated animate__fadeOutRight'
-                        }
+                        timer: 1500
                     });
-                    button.textContent = 'В избранном';
-                    button.disabled = true;
                 } else {
                     Swal.fire({
                         icon: 'error',
                         title: 'Ошибка',
                         text: data,
-                        toast: true,
-                        position: 'top-end',
-                        background: '#f8d7da',
-                        color: '#721c24',
-                        showClass: {
-                            popup: 'animate__animated animate__fadeInRight'
-                        },
-                        hideClass: {
-                            popup: 'animate__animated animate__fadeOutRight'
-                        }
                     });
                 }
             })
@@ -61,16 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     icon: 'error',
                     title: 'Ошибка',
                     text: 'Что-то пошло не так!',
-                    toast: true,
-                    position: 'top-end',
-                    background: '#f8d7da',
-                    color: '#721c24',
-                    showClass: {
-                        popup: 'animate__animated animate__fadeInRight'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__fadeOutRight'
-                    }
                 });
                 console.error('Error:', error);
             });

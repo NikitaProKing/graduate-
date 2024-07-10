@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
-from .models import Add_a_recipe_Model, CommentModel, Detail_Model, Favorite
+from .models import Add_a_recipe_Model, CommentModel, Detail_Model, Favorite, Subscription
 
 
 class LoginForm(forms.Form):
@@ -69,3 +69,11 @@ class FavoriteForm(forms.ModelForm):
     class Meta:
         model = Favorite
         fields = ['item']
+
+class SubscribeForm(forms.ModelForm):
+    class Meta:
+        model = Subscription
+        fields = ['subscribed_to']
+
+class UnsubscribeForm(forms.Form):
+    subscribed_to = forms.ModelChoiceField(queryset=User.objects.all())

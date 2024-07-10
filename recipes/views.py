@@ -9,8 +9,9 @@ from django.urls import reverse_lazy
 from django.views.decorators.http import require_POST
 from django.views.generic import CreateView, DetailView, FormView, DeleteView
 from django.core.paginator import Paginator
-from .forms import LoginForm, RegForm, Add_a_recipe_Form, CommentForm, DetailForm
-from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel, Detail_Model, Favorite
+from .forms import LoginForm, RegForm, Add_a_recipe_Form, CommentForm, DetailForm, SubscribeForm, UnsubscribeForm
+from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, CommentModel, Detail_Model, Favorite, \
+    Subscription
 
 
 @login_required
@@ -184,3 +185,35 @@ def add_to_favoritesView(request, item_id):
         return HttpResponse('Товар добавлен в избранное')
     else:
         return HttpResponse('Товар уже в избранном')
+
+
+@login_required
+def subscribe(request):
+    if request.method == 'POST':
+        form = SubscribeForm(request.POST)
+        if form.is_valid():
+            subscription = form.save(commit=False)
+            subscription.user = request.user
+            subscription.save()
+            return redirect('subscriptions')
+    else:
+        form = SubscribeForm()
+    return render(request, 'subscribe.html', {'form': form})
+
+@login_required
+def unsubscribe(request):
+    if request.method == 'POST':
+        form = UnsubscribeForm(request.POST)
+        if form.is_valid():
+            subscribed_to = form.cleaned_data['subscribed_to']
+            subscription = get_object_or_404(Subscription, user=request.user, subscribed_to=subscribed_to)
+            subscription.delete()
+            return redirect('subscriptions')
+    else:
+        form = UnsubscribeForm()
+    return render(request, 'unsubscribe.html', {'form': form})
+
+@login_required
+def subscriptions_list(request):
+    subscriptions = Subscription.objects.filter(user=request.user)
+    return render(request, 'subscriptions_list.html', {'subscriptions': subscriptions})

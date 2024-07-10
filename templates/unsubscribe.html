@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unsubscribe</title>
+</head>
+<body>
+    <h1>Unsubscribe</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Unsubscribe</button>
+    </form>
+</body>
+</html>

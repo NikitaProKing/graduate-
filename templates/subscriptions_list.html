@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Subscriptions</title>
+</head>
+<body>
+    <h1>My Subscriptions</h1>
+    <ul>
+        {% for subscription in subscriptions %}
+            <li>{{ subscription.subscribed_to.username }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
