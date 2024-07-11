@@ -31,16 +31,21 @@ class RegForm(UserCreationForm):
         fields = ['username', 'last_name', 'email', 'password1', 'password2']
 
 
-def validate_image_size(image):
-    max_size = 5 * 1024 * 1024  # 5MB
-    if image.size > max_size:
-        raise ValidationError(f'Размер файла не должен превышать {max_size // (1024 * 1024)}MB.')
+# def validate_image_size(image):
+#     max_size = 5 * 1024 * 1024  # 5MB
+#     if image.size > max_size:
+#         raise ValidationError(f'Размер файла не должен превышать {max_size // (1024 * 1024)}MB.')
 
 class Add_a_recipe_Form(forms.ModelForm):
     class Meta:
         model = Add_a_recipe_Model
         fields = '__all__'
         exclude = ['author']
+
+        def validate_image_size(image):
+            max_size = 5 * 1024 * 1024  # 5MB
+            if image.size > max_size:
+                raise ValidationError(f'Размер файла не должен превышать {max_size // (1024 * 1024)}MB.')
 
 
 class CommentForm(forms.ModelForm):
@@ -56,8 +61,13 @@ class DetailForm(forms.ModelForm):
 
         def clean_image(self):
             image = self.cleaned_data.get('photo')
-            validate_image_size(image)
+            self.validate_image_size(image)
             return image
+
+        def validate_image_size(image):
+            max_size = 5 * 1024 * 1024  # 5MB
+            if image.size > max_size:
+                raise ValidationError(f'Размер файла не должен превышать {max_size // (1024 * 1024)}MB.')
 
 
 # class EditRecipesForm(forms.ModelForm):

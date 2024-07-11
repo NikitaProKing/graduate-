@@ -18,7 +18,7 @@ from .models import Profile, VisitedPage, Home_Model, Add_a_recipe_Model, Commen
 @login_required
 def profile_view(request):
     products_count = Add_a_recipe_Model.objects.filter(author=request.user).count()
-    product = Add_a_recipe_Model.objects.all().filter(author=request.user)
+    product = Add_a_recipe_Model.objects.all ().filter(author=request.user)
     return render(request, 'profile.html', {'products_count': products_count, 'product': product})
 
 
