@@ -2,7 +2,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.checks import messages
-from django.http import HttpResponse
+from django.db import transaction
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login
 from django.urls import reverse_lazy
@@ -157,11 +158,31 @@ class AddDetailView(CreateView):
     success_url = reverse_lazy('profile')
     context_object_name = 'form'
 
+    from django.db import transaction
+
     def form_valid(self, form):
-        # Обработка сохранения нескольких форм
-        for text, photo in zip(self.request.POST.getlist('text'), self.request.FILES.getlist('photo')):
-            Detail_Model.objects.create()
-        return redirect(self.success_url)
+        if not self.request.user.is_authenticated:
+            return HttpResponse("Пожалуйста, войдите в систему для добавления деталей")
+
+        title_id = self.kwargs.get('recipes_id')
+        try:
+            title_instance = Add_a_recipe_Model.objects.get(id=title_id)
+        except Add_a_recipe_Model.DoesNotExist:
+            return HttpResponseNotFound("Рецепт не найден")
+
+        with transaction.atomic():
+            texts = self.request.POST.getlist('text[]')
+            print(texts)
+            photos = self.request.FILES.getlist('photo[]')
+            for text, photo in zip(texts, photos):
+                Detail_Model.objects.create(
+                    text=text,
+                    photo=photo,
+                    author=self.request.user,
+                    title=title_instance
+                )
+
+        return redirect('profile')
 
 
 class MyDeleteView(DeleteView):

@@ -65,11 +65,10 @@ class Detail_Model(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
+            self.slug = slugify(self.text)
         super().save(*args, **kwargs)
 
-    def __str__(self):
-        return self.title
+
 
 
 

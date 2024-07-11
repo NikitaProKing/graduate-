@@ -94,23 +94,29 @@
         }
     </style>
     <script>
-        function addField() {
-            const container = document.getElementById("dynamic-fields");
-            const newField = document.createElement("div");
-            newField.classList.add("dynamic-field");
-            newField.innerHTML = `
-                <div class="form-group">
-                    <label for="id_image">Изображение:</label>
-                    <input type="file" name="image" class="form-control" id="id_image">
-                </div>
-                <div class="form-group">
-                    <label for="id_description">Описание:</label>
-                    <input type="text" name="description" class="form-control" id="id_description">
-                </div>
-                <button type="button" onclick="removeField(this)">Удалить</button>
-            `;
-            container.appendChild(newField);
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+    addField(); // Добавить начальное поле при загрузке страницы
+});
+
+function addField() {
+    const container = document.getElementById("dynamic-fields");
+    const newField = document.createElement("div");
+    newField.classList.add("dynamic-field");
+    newField.innerHTML = `
+        <div class="form-group">
+            <label>Изображение:</label>
+            <input type="file" name="photo[]" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Описание:</label>
+            <input type="text" name="text[]" class="form-control">
+        </div>
+        <button type="button" onclick="removeField(this)" class="btn btn-danger">Удалить</button>
+    `;
+    container.appendChild(newField);
+}
+
+
 
         function removeField(button) {
             const field = button.parentNode;
