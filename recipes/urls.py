@@ -3,7 +3,7 @@ from django.views.generic import DeleteView
 from .import views
 from django.urls import path
 
-from .views import profile_view, login_view, MyDeleteView
+from .views import profile_view, login_view, MyDeleteView, MyDetailView
 
 urlpatterns = [
     path('home/', views.home_view, name='home'),
@@ -14,7 +14,7 @@ urlpatterns = [
     path('recipes_list/', views.recipes_list, name='recipes_list'),
     path('add-recipe/', views.add_recipe, name='add_recipe'),
     path('comment/', views.commentView, name='comment'),
-    path('Detail/<slug:slug>/', views.MyDetailView.as_view(), name='detail1'),
+    path('Detail/<slug:slug>/', MyDetailView.as_view(), name='detail1'),
     # path('detail/<int:pk>', views.detail, name='detail'),
     path('addDetail/<int:recipes_id>', views.AddDetailView.as_view(), name='addDetail'),
     path('edit_recipes/<int:recipes_id>', views. edit_recipes, name='edit_recipes'),
@@ -24,5 +24,6 @@ urlpatterns = [
     path('subscribe/', views.subscribe, name='subscribe'),
     path('unsubscribe/', views.unsubscribe, name='unsubscribe'),
     path('subscriptions/', views.subscriptions_list, name='subscriptions'),
+#   path('Subscribers/, views.SubscribersView.as_view(), name='subscribers'),
 ]
 

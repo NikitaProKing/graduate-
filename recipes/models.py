@@ -59,13 +59,18 @@ class Add_a_recipe_Model(models.Model):
 class Detail_Model(models.Model):
     photo = models.ImageField('Изображение', upload_to='images/')
     text = models.TextField('Описание')
-    title = models.ForeignKey(Add_a_recipe_Model, on_delete=models.CASCADE)
+    title = models.ForeignKey('Add_a_recipe_Model', on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.text)
+            self.slug = slugify(self.title)
+            original_slug = self.slug
+            for x in range(1, 1000):
+                if not Detail_Model.objects.filter(slug=self.slug).exists():
+                    break
+                self.slug = f"{original_slug}-{x}"
         super().save(*args, **kwargs)
 
 

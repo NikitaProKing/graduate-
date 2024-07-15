@@ -127,6 +127,7 @@ class MyDetailView(DetailView):
     template_name = 'detail.html'
     context_object_name = 'detail'
     slug_field = 'slug'
+    slug_url_kwarg = 'slug'
 
 
 def upload_image(request):

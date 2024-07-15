@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'css/home_footer.css' %}">
@@ -14,16 +14,16 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{% static 'js/home.js' %}" defer></script>
 <!--    <script src="{% static 'js/home2.js' %}" defer></script>-->
-    <title>Home</title>
+    <title>Главная</title>
 </head>
 <body>
 <div class="container-fluid px-0">
     <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed">
         <div class="container-fluid d-flex"> <a class="navbar-brand" href="{% url 'profile' %}">Профиль</a>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation"> <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Couches</a> </li>
-                <li class="nav-item" role="presentation"> <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Chair</a> </li>
-                <li class="nav-item" role="presentation"> <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Dining</a> </li>
+                <li class="nav-item" role="presentation"> <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Диваны</a> </li>
+                <li class="nav-item" role="presentation"> <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Стулья</a> </li>
+                <li class="nav-item" role="presentation"> <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Обеденные столы</a> </li>
             </ul>
         </div>
     </nav>
@@ -47,7 +47,7 @@
                             <hr>
                             <div class="card-body">
                                 <div class="text-right buttons">
-                                    <button class="btn btn-outline-dark">Подробно</button>
+                                    <button class="btn btn-outline-dark" onclick="location.href='{% url 'detail1' i.slug %}'">Подробно</button>
                                     <button class="btn btn-dark favorite-button" data-item-id="{{ i.id }}">Добавить в избранное</button>
                                 </div>
                             </div>
