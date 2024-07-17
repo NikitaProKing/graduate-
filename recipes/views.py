@@ -93,19 +93,19 @@ class Add_Views(CreateView):
         form.save()
         return super().form_valid(form)
 
-@login_required
-def edit_recipes(request, recipes_id):
-    recipes = get_object_or_404(Add_a_recipe_Model, id=recipes_id)
-    if request.user != recipes.author:
-        return HttpResponse('You are not allowed to edit this recipe.')
-    if request.method == 'POST':
-        edit = Add_a_recipe_Form(request.POST, request.FILES, instance=recipes)
-        if edit.is_valid():
-            edit.save()
-            return redirect('edit_recipes.html', recipes_id=recipes.id)
-    else:
-        edit = Add_a_recipe_Form(instance=recipes)
-    return render(request, 'edit_recipes.html', {'edit': edit})
+# @login_required
+# def edit_recipes(request, recipes_id):
+#     recipes = get_object_or_404(Add_a_recipe_Model, id=recipes_id)
+#     if request.user != recipes.author:
+#         return HttpResponse('You are not allowed to edit this recipe.')
+#     if request.method == 'POST':
+#         edit = Add_a_recipe_Form(request.POST, request.FILES, instance=recipes)
+#         if edit.is_valid():
+#             edit.save()
+#             return redirect('edit_recipes.html', recipes_id=recipes.id)
+#     else:
+#         edit = Add_a_recipe_Form(instance=recipes)
+#     return render(request, 'edit_recipes.html', {'edit': edit})
 
 
 def commentView(request):
@@ -123,11 +123,16 @@ def commentView(request):
 
 
 class MyDetailView(DetailView):
-    model = Detail_Model
+    model = Add_a_recipe_Model
     template_name = 'detail.html'
     context_object_name = 'detail'
     slug_field = 'slug'
-    slug_url_kwarg = 'slug'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        recipe = get_object_or_404(Add_a_recipe_Model, slug=self.kwargs.get('slug'))
+        context['related_details'] = Detail_Model.objects.filter(title=recipe.id)
+        return context
 
 
 def upload_image(request):
@@ -239,3 +244,20 @@ def unsubscribe(request):
 def subscriptions_list(request):
     subscriptions = Subscription.objects.filter(user=request.user)
     return render(request, 'subscriptions_list.html', {'subscriptions': subscriptions})
+
+@login_required
+def edit_recipes(request, recipes_id):
+    recipes = get_object_or_404(Add_a_recipe_Model, id=recipes_id)
+    if request.user != recipes.author:
+        return HttpResponse('You are not allowed to edit this recipe.')
+    if request.method == 'POST':
+        edit = Add_a_recipe_Form(request.POST, request.FILES, instance=recipes)
+        if edit.is_valid():
+            edit.save()
+            return redirect('edit_recipes.html', recipes_id=recipes.id)
+    else:
+        edit = Add_a_recipe_Form(instance=recipes)
+    return render(request, 'edit_recipes.html', {'edit': edit})
+
+def edit(request):
+    return render(request, 'edit.html')

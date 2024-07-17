@@ -17,7 +17,8 @@ urlpatterns = [
     path('Detail/<slug:slug>/', MyDetailView.as_view(), name='detail1'),
     # path('detail/<int:pk>', views.detail, name='detail'),
     path('addDetail/<int:recipes_id>', views.AddDetailView.as_view(), name='addDetail'),
-    path('edit_recipes/<int:recipes_id>', views. edit_recipes, name='edit_recipes'),
+    path('edit_recipes/<int:recipes_id>', views.edit_recipes, name='edit_recipes'),
+    path('edit/', views.edit, name='edit'),
     # path('favorite/', views.favorite_view, name='favorite'),
     path('Delete/<int:pk>/', MyDeleteView.as_view(), name='Delete-delete'),
     path('add-to-favorites/<int:item_id>/', views.add_to_favoritesView, name='add_to_favorites'),
@@ -25,5 +26,6 @@ urlpatterns = [
     path('unsubscribe/', views.unsubscribe, name='unsubscribe'),
     path('subscriptions/', views.subscriptions_list, name='subscriptions'),
 #   path('Subscribers/, views.SubscribersView.as_view(), name='subscribers'),
+
 ]
 

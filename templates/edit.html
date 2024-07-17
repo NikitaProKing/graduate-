@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            flex-direction: column;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px #999;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.1s;
+        }
+
+        .button-primary {
+            background-color: white;
+            color: black;
+        }
+
+        .button-primary:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .button-primary:active {
+            box-shadow: 0 2px #666;
+            transform: translateY(2px) scale(0.98);
+            background-color: #333;
+            color: white;
+        }
+
+        .button-back {
+            background-color: blue;
+            color: white;
+        }
+
+        .button-back:hover {
+            background-color: darkblue;
+        }
+
+        .button-back:active {
+            box-shadow: 0 2px #666;
+            transform: translateY(2px) scale(0.98);
+            background-color: navy;
+        }
+    </style>
+</head>
+<body>
+    <button class="button button-primary" id="mainViewButton">Основной просмотр</button>
+    <button class="button button-primary" id="detailViewButton">Детальный просмотр</button>
+    <button class="button button-back" id="backButton">Назад</button>
+
+    <script>
+        document.getElementById('mainViewButton').addEventListener('click', function() {
+            window.location.href = 'edit_recipes/';
+        });
+
+        document.getElementById('detailViewButton').addEventListener('click', function() {
+            window.location.href = 'detail_view_url';
+        });
+
+        document.getElementById('backButton').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

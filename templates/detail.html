@@ -5,33 +5,74 @@
     <meta charset="UTF-8">
     <title>{{ detail.title }}</title>
     <link rel="stylesheet" href="{% static 'css/home_footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home_i.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{% static 'js/home.js' %}" defer></script>
+    <script src="{% static 'js/h.js' %}" defer></script>
+    <style>
+        .center-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+        td {
+            vertical-align: top;
+            padding: 10px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
 <div class="container mt-5">
-    <div class="product-detail">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="{{ detail.photo.url }}" class="img-fluid" alt="{{ detail.title }}">
-            </div>
-            <div class="col-md-6">
+    <div class="row">
+        <!-- Колонка для изображений -->
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <img src="{{ detail.img.url }}" class="img-fluid" alt="{{ detail.title }}">
+        </div>
+        <!-- Колонка для текста -->
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <div>
                 <h1>{{ detail.title }}</h1>
                 <p class="text-muted">Автор: {{ detail.author.username }}</p>
-                <p>{{ detail.text }}</p>
+                <p>{{ detail.content }}</p>
                 <a href="{% url 'home' %}" class="btn btn-primary">Назад к списку</a>
             </div>
         </div>
+    </div>
+    <div class="mt-4">
+        <h2 class="text-center">Детальный просмотр приготовления {{ detail.title }}</h2>
+        <table>
+            {% for related in related_details %}
+            <tr>
+                <!-- Колонка для изображений -->
+                <td class="col-md-6">
+                    <img src="{{ related.photo.url }}" class="img-fluid" alt="{{ related.text }}">
+                </td>
+                <!-- Колонка для текста -->
+                <td class="col-md-6">
+                    <p>{{ related.text }}</p>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
 
