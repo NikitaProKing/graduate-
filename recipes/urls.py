@@ -18,6 +18,7 @@ urlpatterns = [
     # path('detail/<int:pk>', views.detail, name='detail'),
     path('addDetail/<int:recipes_id>', views.AddDetailView.as_view(), name='addDetail'),
     path('edit/edit_recipes/<int:recipes_id>/', views.edit_recipes, name='edit_recipes'),
+    path('edit/edit_recipe_deteil/<int:recipe_id>/', views.edit_recipe_detail, name='edit_recipe_deteil'),
     path('edit/', views.edit, name='edit'),
     # path('favorite/', views.favorite_view, name='favorite'),
     path('Delete/<int:pk>/', MyDeleteView.as_view(), name='Delete-delete'),

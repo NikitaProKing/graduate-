@@ -125,7 +125,10 @@
                             <div class="card-body">
                                 <div class="text-right buttons">
                                     <button class="btn btn-outline-dark"
-                                            onclick="location.href='{% url 'edit' %}'">Редактировать
+                                            onclick="location.href='{% url 'edit_recipes' i.id %}'">Редактировать основной
+                                    </button>
+                                    <button class="btn btn-outline-dark"
+                                            onclick="location.href='{% url 'edit_recipe_deteil' i.id %}'">Редактировать детальный
                                     </button>
                                     <button class="btn btn-dark" onclick="location.href='{% url 'addDetail' i.id %}'">
                                         Добавить детальный просмотр

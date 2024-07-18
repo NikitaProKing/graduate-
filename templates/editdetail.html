@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for form, detail in details_forms %}
+        {{ form.as_p }}
+        <!-- Можно добавить скрытое поле, если необходимо идентифицировать каждую деталь -->
+        <input type="hidden" name="detail_id_{{ forloop.counter }}" value="{{ detail.id }}">
+    {% endfor %}
+    <button type="submit">Сохранить изменения</button>
+</form>

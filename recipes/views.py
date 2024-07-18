@@ -260,7 +260,7 @@ def edit_recipes(request, recipes_id):
         form = Add_a_recipe_Form(request.POST, request.FILES, instance=recipes)
         if form.is_valid():
             form.save()
-            return redirect('edit_recipes.html', recipes_id=recipes.id)
+            return redirect('profile')
     else:
         form = Add_a_recipe_Form(instance=recipes)
     return render(request, 'edit_recipes.html', {'form': form})
@@ -268,3 +268,20 @@ def edit_recipes(request, recipes_id):
 
 def edit(request):
     return render(request, 'edit.html')
+
+@login_required
+def edit_recipe_detail(request, recipe_id):
+    recipe = get_object_or_404(Add_a_recipe_Model, id=recipe_id, author=request.user)
+    details = Detail_Model.objects.filter(title=recipe)
+
+    if request.method == 'POST':
+        forms = [DetailForm(request.POST, request.FILES, instance=detail, prefix=str(detail.id)) for detail in details]
+        if all(form.is_valid() for form in forms):
+            for form in forms:
+                form.save()
+            return redirect('profile')  # Перенаправляем пользователя после сохранения
+    else:
+        forms = [DetailForm(instance=detail, prefix=str(detail.id)) for detail in details]
+
+    details_forms = zip(forms, details)
+    return render(request, 'editdetail.html', {'details_forms': details_forms, 'recipe': recipe})
