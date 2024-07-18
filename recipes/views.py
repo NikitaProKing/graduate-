@@ -245,19 +245,26 @@ def subscriptions_list(request):
     subscriptions = Subscription.objects.filter(user=request.user)
     return render(request, 'subscriptions_list.html', {'subscriptions': subscriptions})
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 @login_required
 def edit_recipes(request, recipes_id):
+    logger.debug(f"Fetching recipe with ID: {recipes_id}")
     recipes = get_object_or_404(Add_a_recipe_Model, id=recipes_id)
     if request.user != recipes.author:
+        logger.info(f"Unauthorized attempt to edit by {request.user}")
         return HttpResponse('You are not allowed to edit this recipe.')
     if request.method == 'POST':
-        edit = Add_a_recipe_Form(request.POST, request.FILES, instance=recipes)
-        if edit.is_valid():
-            edit.save()
+        form = Add_a_recipe_Form(request.POST, request.FILES, instance=recipes)
+        if form.is_valid():
+            form.save()
             return redirect('edit_recipes.html', recipes_id=recipes.id)
     else:
-        edit = Add_a_recipe_Form(instance=recipes)
-    return render(request, 'edit_recipes.html', {'edit': edit})
+        form = Add_a_recipe_Form(instance=recipes)
+    return render(request, 'edit_recipes.html', {'form': form})
+
 
 def edit(request):
     return render(request, 'edit.html')

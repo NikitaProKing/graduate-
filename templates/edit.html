@@ -64,22 +64,28 @@
     </style>
 </head>
 <body>
-    <button class="button button-primary" id="mainViewButton">Основной просмотр</button>
-    <button class="button button-primary" id="detailViewButton">Детальный просмотр</button>
-    <button class="button button-back" id="backButton">Назад</button>
+<button class="button button-primary" id="mainViewButton">Основной просмотр</button>
+<button class="button button-primary" id="detailViewButton">Детальный просмотр</button>
+<button class="button button-back" id="backButton">Назад</button>
 
-    <script>
-        document.getElementById('mainViewButton').addEventListener('click', function() {
-            window.location.href = 'edit_recipes/';
-        });
+<script>
+    // Example recipe ID, replace with dynamic acquisition as needed
+    var recipeId = 1; // You can dynamically set this based on some logic or input
 
-        document.getElementById('detailViewButton').addEventListener('click', function() {
-            window.location.href = 'detail_view_url';
-        });
+    document.getElementById('mainViewButton').addEventListener('click', function() {
+console.log(`Redirecting to edit_recipes/${recipeId}/`); // Для отладки
+window.location.href = `edit_recipes/${recipeId}/`;
+});
 
-        document.getElementById('backButton').addEventListener('click', function() {
-            window.history.back();
-        });
-    </script>
+
+    document.getElementById('detailViewButton').addEventListener('click', function() {
+        window.location.href = 'detail_view_url';
+    });
+
+    document.getElementById('backButton').addEventListener('click', function() {
+        window.history.back();
+    });
+</script>
 </body>
 </html>
+
