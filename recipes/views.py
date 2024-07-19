@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.checks import messages
 from django.db import transaction
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login
 from django.urls import reverse_lazy
@@ -205,13 +205,31 @@ class MyDeleteView(DeleteView):
 @login_required
 @require_POST
 def add_to_favoritesView(request, item_id):
-    item = Add_a_recipe_Model.objects.get(id=item_id)
+    item = get_object_or_404(Add_a_recipe_Model, id=item_id)
     favorite, created = Favorite.objects.get_or_create(user=request.user, item=item)
 
     if created:
-        return HttpResponse('Товар добавлен в избранное')
+        return JsonResponse({'status': 'success', 'message': 'Товар добавлен в избранное'})
     else:
-        return HttpResponse('Товар уже в избранном')
+        return JsonResponse({'status': 'error', 'message': 'Товар уже в избранном'})
+
+import logging
+
+logger = logging.getLogger(__name__)
+
+# @login_required
+# @require_POST
+# def add_to_favoritesView(request, item_id):
+#     item = get_object_or_404(Add_a_recipe_Model, id=item_id)
+#     favorite, created = Favorite.objects.get_or_create(user=request.user, item=item)
+#
+#     if created:
+#         logger.debug(f'Новый избранный товар добавлен: user={request.user.id}, item={item_id}')
+#         return HttpResponse('Товар добавлен в избранное')
+#     else:
+#         logger.debug(f'Товар уже в избранном: user={request.user.id}, item={item_id}')
+#         return HttpResponse('Товар уже в избранном')
+
 
 
 @login_required
@@ -285,3 +303,18 @@ def edit_recipe_detail(request, recipe_id):
 
     details_forms = zip(forms, details)
     return render(request, 'editdetail.html', {'details_forms': details_forms, 'recipe': recipe})
+
+@login_required
+def favorites_view(request):
+    favorites = Favorite.objects.filter(user=request.user)
+    context = {
+        'favorites': favorites
+    }
+    return render(request, 'favorites.html', context)
+
+@login_required
+@require_POST
+def remove_from_favoritesView(request, favorite_id):
+    favorite = Favorite.objects.get(id=favorite_id, user=request.user)
+    favorite.delete()
+    return redirect('favorites')

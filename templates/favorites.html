@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/home_footer.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <title>Избранное</title>
+</head>
+<body>
+<div class="container-fluid px-0">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed">
+        <div class="container-fluid d-flex">
+            <a class="navbar-brand" href="{% url 'profile' %}">Профиль</a>
+        </div>
+    </nav>
+</div>
+<div class="container-fluid mt-2 mb-5">
+    <div class="products">
+        <div class="row g-3">
+            {% if favorites %}
+            {% for favorite in favorites %}
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ favorite.item.img.url }}" class="card-img-top">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <span class="font-weight-bold">{{ favorite.item.title }}</span>
+                            <span class="font-weight-bold">{{ favorite.item.created_on }}</span>
+                        </div>
+                        <p class="card-text mb-1 mt-1">{{ favorite.item.content }}</p>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <div class="text-right buttons">
+                            <button class="btn btn-outline-dark"
+                                    onclick="location.href='{% url 'detail1' favorite.item.slug %}'">Подробно
+                            </button>
+                            <form method="POST" action="{% url 'remove_from_favorites' favorite.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-dark">Удалить из избранного</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+                <p>У вас пока нет избранных товаров</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>

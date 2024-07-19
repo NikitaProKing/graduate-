@@ -94,8 +94,12 @@ class Favorite(models.Model):
     item = models.ForeignKey(Add_a_recipe_Model, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        unique_together = ('user', 'item')
+
     def __str__(self):
-        return f'{self.user.username} - {self.item.name}'
+        return f'{self.user.username} - {self.item.title}'
+
 
 class Subscription(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='subscriptions')

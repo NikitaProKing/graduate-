@@ -1,9 +1,121 @@
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% for form, detail in details_forms %}
-        {{ form.as_p }}
-        <!-- Можно добавить скрытое поле, если необходимо идентифицировать каждую деталь -->
-        <input type="hidden" name="detail_id_{{ forloop.counter }}" value="{{ detail.id }}">
-    {% endfor %}
-    <button type="submit">Сохранить изменения</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f2f4f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: auto;
+        }
+        .card-header {
+            background-color: #343a40;
+            color: #ffffff;
+            font-weight: bold;
+            border-bottom: 2px solid #495057;
+        }
+        .btn-custom {
+            background: #007bff; /* Синий цвет для кнопки */
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .btn-custom:hover {
+            background: #0056b3; /* Темно-синий цвет при наведении */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        .btn-custom:focus {
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+        }
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+        .form-control::placeholder {
+            color: #6c757d;
+            opacity: 1;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-control-label {
+            font-weight: bold;
+        }
+        .card-body {
+            padding: 1.5rem;
+        }
+        .custom-file-label::after {
+            content: "Browse";
+            background-color: #007bff; /* Синий цвет для кнопки выбора файла */
+            color: #ffffff;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="form-container">
+            <h2 class="mb-4 text-center">Edit Details</h2>
+            <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                {% csrf_token %}
+                {% for form, detail in details_forms %}
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            Detail {{ forloop.counter }}
+                        </div>
+                        <div class="card-body">
+                            {{ form.as_p }}
+                            <!-- Hidden field to identify each detail -->
+                            <input type="hidden" name="detail_id_{{ forloop.counter }}" value="{{ detail.id }}">
+                        </div>
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-custom btn-block">Save Changes</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</body>
+</html>
